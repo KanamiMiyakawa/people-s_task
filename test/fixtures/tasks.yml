@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task_name: MyString
+  priority: 1
+  limit: 2020-10-06
+  status: 1
+
+two:
+  task_name: MyString
+  priority: 1
+  limit: 2020-10-06
+  status: 1
