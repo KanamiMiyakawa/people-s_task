@@ -1,22 +1,26 @@
-##Model
+## Model
 
-####UserModel
+#### UserModel
+
 name:string
 email:string
 password_digest:string
 
-####TaskModel
+#### TaskModel
+
 task_name:string
 priority:integer
 limit:date
 status:integer
 user_id(FK):integer
 
-####LabelModel
+#### LabelModel
+
 label_name:string
 user_id(FK):integre
 
-####LabellingModel
+#### LabellingModel
+
 task_id(FK):integer
 label_id(FK):integer
 
