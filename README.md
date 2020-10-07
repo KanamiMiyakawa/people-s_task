@@ -12,6 +12,7 @@ task_name:string
 priority:integer
 limit:date
 status:integer
+content:string
 user_id(FK):integer
 
 #### LabelModel
