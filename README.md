@@ -2,31 +2,44 @@
 
 #### UserModel
 
-name:string
-email:string
-password_digest:string
+| カラム名        | データ型 |
+| --------------- | -------- |
+| name            | string   |
+| email           | string   |
+| password_digest | string   |
 
 #### TaskModel
 
-task_name:string
-priority:integer
-limit:date
-status:integer
-user_id(FK):integer
+| カラム名  | データ型 |
+| --------- | -------- |
+| task_name | string   |
+| priority  | integer  |
+| limit     | date     |
+| status    | integer  |
+| content   | string   |
+| user_id   | integer  |
+
+
 
 #### LabelModel
 
-label_name:string
-user_id(FK):integre
+
+| カラム名   | データ型 |
+| ---------- | -------- |
+| label_name | string   |
+| user_id    | integer  |
+
 
 #### LabellingModel
 
-task_id(FK):integer
-label_id(FK):integer
+| カラム名 | データ型 |
+| -------- | -------- |
+| task_id  | integer  |
+| label_id | integer  |
 
 
 
-###データ構造
+### データ構造
 
 userとtaskを1対多で紐づけ、indexではそのuserが投稿したtaskだけ表示
 taskとlabelを多対多で紐づけ、中間テーブルにlabellingsを設置
@@ -34,7 +47,7 @@ userとlabelも1対多で紐づける
 
 
 
-###その他
+### その他
 
 要件から、絞り込みは３種類できなければならない、同時に2種類以上で検索するのはまた今度
 	・ステータス

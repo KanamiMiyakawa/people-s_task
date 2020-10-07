@@ -1,0 +1,55 @@
+<%= form_with(model: task, local: true) do |form| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, "個") %>のエラーが発生しました</h2>
+
+      <ul>
+      <% task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table class="form_table">
+    <div class="field">
+      <tr>
+        <th><%= form.label :task_name %></th>
+        <td><%= form.text_field :task_name %></td>
+      </tr>
+    </div>
+    <div class="field">
+      <tr>
+        <th><%= form.label :content %></th>
+        <td><%= form.text_field :content %></td>
+      </tr>
+    </div>
+    <div class="field">
+      <tr>
+        <th><%= form.label :priority %></th>
+        <td><%= form.select :priority, [1,2,3,4,5] %></td>
+      </tr>
+    </div>
+    <div class="field">
+      <tr>
+        <th><%= form.label :limit, id: "task_limit" %></th>
+        <td><%= form.date_select :limit %></td>
+      </tr>
+    </div>
+    <div class="field">
+      <tr>
+        <th><%= form.label :status %></th>
+        <td>
+          <%= form.radio_button :status, 1%>未着手
+          <%= form.radio_button :status, 2%>着手
+          <%= form.radio_button :status, 3%>完了
+        </td>
+      </tr>
+    </div>
+  </table>
+
+
+  <div class="actions">
+    <%= form.submit "登録"%>
+  </div>
+<% end %>
