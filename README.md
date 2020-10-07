@@ -2,28 +2,40 @@
 
 #### UserModel
 
-name:string
-email:string
-password_digest:string
+| カラム名        | データ型 |
+| --------------- | -------- |
+| name            | string   |
+| email           | string   |
+| password_digest | string   |
 
 #### TaskModel
 
-task_name:string
-priority:integer
-limit:date
-status:integer
-content:string
-user_id(FK):integer
+| カラム名  | データ型 |
+| --------- | -------- |
+| task_name | string   |
+| priority  | integer  |
+| limit     | date     |
+| status    | integer  |
+| content   | string   |
+| user_id   | integer  |
+
+
 
 #### LabelModel
 
-label_name:string
-user_id(FK):integre
+
+| カラム名   | データ型 |
+| ---------- | -------- |
+| label_name | string   |
+| user_id    | integer  |
+
 
 #### LabellingModel
 
-task_id(FK):integer
-label_id(FK):integer
+| カラム名 | データ型 |
+| -------- | -------- |
+| task_id  | integer  |
+| label_id | integer  |
 
 
 
