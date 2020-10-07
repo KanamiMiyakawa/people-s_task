@@ -20,6 +20,12 @@
     </div>
     <div class="field">
       <tr>
+        <th><%= form.label :content %></th>
+        <td><%= form.text_field :content %></td>
+      </tr>
+    </div>
+    <div class="field">
+      <tr>
         <th><%= form.label :priority %></th>
         <td><%= form.select :priority, [1,2,3,4,5] %></td>
       </tr>
