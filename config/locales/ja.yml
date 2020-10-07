@@ -13,7 +13,7 @@ ja:
         task_name: タスク名
         content: 詳細
         priority: 優先順位
-        limit: 限度
+        limit: 期限
         status: 状態
   date:
     abbr_day_names:
