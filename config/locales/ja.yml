@@ -18,6 +18,12 @@ ja:
         status_1: 未着手
         status_2: 着手
         status_3: 完了
+  buttons:
+    task_new: 新しいタスクを登録
+    task_show: 詳細
+    task_edit: 編集
+    task_delete: 削除
+    back: 戻る
   confirm:
     when_delete: 本当に削除してもいいですか？
   date:
@@ -225,3 +231,7 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  titles:
+    task_title_index: タスク一覧
+    task_title_new: 新しいタスクを登録
+    task_title_edit: タスクの編集

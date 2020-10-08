@@ -42,7 +42,7 @@
         <td>
           <% 1.upto(3) do |n| %>
             <%= form.radio_button :status, n %>
-            <%= form.label :status, t("activerecord.attributes.task.status_%{n.to_s}"), {value: n} %>
+            <%= form.label :status, t("activerecord.attributes.task.status_#{n.to_s}"), {value: n} %>
           <% end %>
 
         </td>
