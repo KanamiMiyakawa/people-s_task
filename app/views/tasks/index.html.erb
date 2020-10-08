@@ -24,7 +24,7 @@
         <td><%= task.status %></td>
         <td><%= link_to 'Show', task %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: '本当に削除してもいいですか？' } %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: t('confirm.when_delete') } %></td>
       </tr>
     <% end %>
   </tbody>

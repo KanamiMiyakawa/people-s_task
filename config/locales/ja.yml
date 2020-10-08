@@ -15,6 +15,11 @@ ja:
         priority: 優先順位
         limit: 期限
         status: 状態
+        status_1: 未着手
+        status_2: 着手
+        status_3: 完了
+  confirm:
+    when_delete: 本当に削除してもいいですか？
   date:
     abbr_day_names:
     - 日
@@ -115,6 +120,8 @@ ja:
       month: 月
       year: 年
   errors:
+    count: 個
+    explanation: のエラーが発生しました
     format: "%{attribute}%{message}"
     messages:
       accepted: を受諾してください
@@ -155,6 +162,9 @@ ja:
       update: 更新する
   notice:
     login_needed: ログインが必要です！
+    task_created: タスクが登録されました
+    task_updated: タスクが更新されました
+    task_deleted: タスクを消去しました
   number:
     currency:
       format:
