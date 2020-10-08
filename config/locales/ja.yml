@@ -18,6 +18,7 @@ ja:
         status_1: 未着手
         status_2: 着手
         status_3: 完了
+        created_at: 作成日時
   buttons:
     task_new: 新しいタスクを登録
     task_show: 詳細
