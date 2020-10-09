@@ -6,6 +6,9 @@ class TasksController < ApplicationController
       @tasks = Task.all.order(limit: "DESC")
     else
       @tasks = Task.all.order(created_at: "DESC")
+      if params[:search]
+        @tasks = @tasks.where('task_name LIKE ?',"%#{params[:search]}%")
+      end
     end
   end
 
