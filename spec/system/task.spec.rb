@@ -47,6 +47,22 @@ RSpec.describe 'タスク管理機能', type: :system do
         end
       end
     end
+    context 'タスクが期限(limit)の降順に並んでいる場合' do
+      it 'あるタスクの期限(limit)が次に並んでいるタスクより必ず大きい' do
+        click_link '終了期限でソートする'
+        within '.task_tbody' do
+          #期限(limit)のテキストを配列にして取得
+          task_limits = all('.task_limit').map(&:text)
+          count = task_limits.length
+          num = 0
+          while num < (count-1) do
+            #テキストを次のタスクのテキストと大小比較、そのまま比較できる
+            expect(task_limits[num]).to be >= task_limits[num+1]
+            num += 1
+          end
+        end
+      end
+    end
   end
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do

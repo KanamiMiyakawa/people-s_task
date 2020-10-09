@@ -10,21 +10,24 @@ FactoryBot.define do
     factory :task2 do
       task_name {'Factoryで作ったデフォルトのタイトル２'}
       content { 'Factoryで作ったデフォルトのコンテント２' }
+      limit {Date.new(2020,1,1)}
     end
 
     factory :task3 do
       task_name {'Factoryで作ったデフォルトのタイトル３'}
       priority {2}
+      limit {Date.new(2020,4,15)}
     end
 
     factory :task4 do
       task_name {'Factoryで作ったデフォルトのタイトル４'}
-      limit {Date.new(2020,11,11)}
+      limit {Date.new(2020,10,5)}
     end
 
     factory :task5 do
       task_name {'Factoryで作ったデフォルトのタイトル５'}
       status {3}
+      limit {Date.new(2020,2,28)}
     end
   end
 

@@ -2,7 +2,7 @@
 
 <h1><%= t('titles.task_title_index') %></h1>
 
-<%= link_to "終了期限でソートする", tasks_path(sort_limit: "true") %>
+<%= link_to "終了期限でソートする", tasks_path(sort_limit: "true"), id: "sort_limit_button" %>
 
 <table>
   <thead>
@@ -23,7 +23,7 @@
         <td><%= task.task_name %></td>
         <td><%= task.content %></td>
         <td><%= task.priority %></td>
-        <td><%= task.limit %></td>
+        <td class="task_limit"><%= task.limit %></td>
         <td><%= task.status %></td>
         <td class="task_created_at"><%= task.created_at %></td>
         <td><%= link_to t('buttons.task_show'), task %></td>
