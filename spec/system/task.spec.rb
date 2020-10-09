@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'タスク管理機能', type: :system do
+
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
@@ -15,9 +16,10 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
   end
+
   describe '一覧表示機能' do
     1.upto(5){
-      |n| task = FactoryBot.create(("task"+n.to_s).intern)
+      |n| task = FactoryBot.create(("index_test"+n.to_s).intern)
       sleep 1
     }
     before do
@@ -64,6 +66,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
   end
+
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
        it '該当タスクの内容が表示される' do
@@ -73,4 +76,62 @@ RSpec.describe 'タスク管理機能', type: :system do
        end
      end
    end
+
+   describe '検索機能' do
+     1.upto(5){
+       |n| task = FactoryBot.create(("search_test"+n.to_s).intern)
+       sleep 1
+     }
+     before do
+       visit tasks_path
+     end
+     context 'タイトルであいまい検索をした場合' do
+       it "検索キーワードを含むタスクで絞り込まれる" do
+         fill_in "title", with: "ルパン"
+         click_button 'Search'
+         within '.task_tbody' do
+           #表示されている全タスク名を配列で取得
+           task_titles = all('.task_title').map(&:text)
+           #以下の比較は==2ではなく>=2。テスト用DBが削除されないが、課題要件によってgemを入れられないため
+           expect(task_titles.length).to be >= 2
+           task_titles.each do |title|
+             expect(title).to include "ルパン"
+           end
+         end
+       end
+     end
+     context 'scopeメソッドでステータス検索をした場合' do
+       it "ステータスに完全一致するタスクが絞り込まれる" do
+         select '未着手', from: 'status'
+         click_button 'Search'
+         within '.task_tbody' do
+           task_statuses = all('.task_status').map(&:text)
+           expect(task_statuses.length).to be >= 3
+           task_statuses.each do |status|
+             expect(status).to eq '未着手'
+           end
+         end
+       end
+     end
+     context 'タイトルのあいまい検索とステータス検索をした場合' do
+       it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
+         fill_in "title", with: "ルパン"
+         select '未着手', from: 'status'
+         click_button 'Search'
+         within '.task_tbody' do
+           task_titles = all('.task_title').map(&:text)
+           task_statuses = all('.task_status').map(&:text)
+           expect(task_titles.length).to be >= 1
+           expect(task_statuses.length).to be >= 1
+           task_titles.each do |title|
+             expect(title).to include "ルパン"
+           end
+           task_statuses.each do |status|
+             expect(status).to eq '未着手'
+           end
+         end
+       end
+     end
+   end
+
 end

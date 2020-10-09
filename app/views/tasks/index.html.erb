@@ -28,11 +28,11 @@
   <tbody class="task_tbody">
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.task_name %></td>
+        <td class="task_title"><%= task.task_name %></td>
         <td><%= task.content %></td>
         <td><%= task.priority %></td>
         <td class="task_limit"><%= task.limit %></td>
-        <td><%= task.status %></td>
+        <td class="task_status"><%= task.status %></td>
         <td class="task_created_at"><%= task.created_at %></td>
         <td><%= link_to t('buttons.task_show'), task %></td>
         <td><%= link_to t('buttons.task_edit'), edit_task_path(task) %></td>
