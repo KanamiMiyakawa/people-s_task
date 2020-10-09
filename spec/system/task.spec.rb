@@ -9,7 +9,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in "詳細", with: 'taskcontent2'
         select '1', from: '優先順位'
         page.find('#task_limit').set("2021-01-01")
-        choose 'task_status_1'
+        choose '未着手'
         click_on '登録'
         expect(page).to have_content 'task2'
       end
@@ -28,8 +28,8 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
         expect(page).to have_content 'Factoryで作ったデフォルトのコンテント２'
         expect(page).to have_content '2'
-        expect(page).to have_content '3'
-        expect(page).to have_content '2020-11-11'
+        expect(page).to have_content '着手'
+        expect(page).to have_content '2020-02-28'
       end
     end
     context 'タスクが作成日時の降順に並んでいる場合' do

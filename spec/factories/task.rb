@@ -5,7 +5,7 @@ FactoryBot.define do
     content { 'Factoryで作ったデフォルトのコンテント１' }
     priority {1}
     limit {Date.today}
-    status {2}
+    status {'未着手'}
 
     factory :task2 do
       task_name {'Factoryで作ったデフォルトのタイトル２'}
@@ -26,7 +26,7 @@ FactoryBot.define do
 
     factory :task5 do
       task_name {'Factoryで作ったデフォルトのタイトル５'}
-      status {3}
+      status {'着手'}
       limit {Date.new(2020,2,28)}
     end
   end
@@ -36,7 +36,7 @@ FactoryBot.define do
     content { 'Factoryで作ったデフォルトのコンテント２' }
     priority {2}
     limit {Date.new(2020,11,11)}
-    status {3}
+    status {'完了'}
   end
 
 end
