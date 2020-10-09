@@ -4,17 +4,16 @@ class TasksController < ApplicationController
   def index
     if params[:sort_limit]
       @tasks = Task.all.order(limit: "DESC")
+    elsif params[:title].present? || params[:status].present?
+      if params[:title].present? && params[:status].present?
+        @tasks = Task.where('task_name LIKE ?',"%#{params[:title]}%").where(status: params[:status])
+      elsif params[:title].present?
+        @tasks = Task.where('task_name LIKE ?',"%#{params[:title]}%")
+      elsif params[:status].present?
+        @tasks = Task.where(status: params[:status])
+      end
     else
       @tasks = Task.all.order(created_at: "DESC")
-      if params[:search].present? || params[:status].present?
-        if params[:search].present? && params[:status].present?
-          @tasks = @tasks.where('task_name LIKE ?',"%#{params[:search]}%").where(status: params[:status])
-        elsif params[:search].present?
-          @tasks = @tasks.where('task_name LIKE ?',"%#{params[:search]}%")
-        elsif params[:status].present?
-          @tasks = @tasks.where(status: params[:status])
-        end
-      end
     end
   end
 
