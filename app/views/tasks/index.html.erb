@@ -2,6 +2,8 @@
 
 <h1><%= t('titles.task_title_index') %></h1>
 
+<%= link_to "終了期限でソートする", tasks_path(sort_limit: "true") %>
+
 <table>
   <thead>
     <tr>
