@@ -16,15 +16,35 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
   end
   describe '一覧表示機能' do
+    1.upto(5){
+      |n| task = FactoryBot.create(("task"+n.to_s).intern)
+      sleep 1
+    }
+    before do
+      visit tasks_path
+    end
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
-        1.upto(5){|n| task = FactoryBot.create(("task"+n.to_s).intern)}
-        visit tasks_path
         expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
         expect(page).to have_content 'Factoryで作ったデフォルトのコンテント２'
         expect(page).to have_content '2'
         expect(page).to have_content '3'
         expect(page).to have_content '2020-11-11'
+      end
+    end
+    context 'タスクが作成日時の降順に並んでいる場合' do
+      it 'あるタスクの作成日時が次に並んでいるタスクより必ず大きい' do
+        within '.task_tbody' do
+          #作成日時のテキストを配列にして取得
+          created_times = all('.task_created_at').map(&:text)
+          count = created_times.length
+          num = 0
+          while num < (count-1) do
+            #テキストを時間に戻し、次のタスクと比較
+            expect(created_times[num].to_time).to be >= created_times[num+1].to_time
+            num += 1
+          end
+        end
       end
     end
   end
@@ -36,5 +56,5 @@ RSpec.describe 'タスク管理機能', type: :system do
          expect(page).to have_content 'Factoryで作ったデフォルトのコンテント２'
        end
      end
-  end
+   end
 end

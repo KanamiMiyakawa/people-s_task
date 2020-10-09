@@ -1,7 +1,7 @@
 <%= form_with(model: task, local: true) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "個") %>のエラーが発生しました</h2>
+      <h2><%= pluralize(task.errors.count, t('errors.count')) %><%= t('errors.explanation') %></h2>
 
       <ul>
       <% task.errors.full_messages.each do |message| %>
@@ -40,9 +40,11 @@
       <tr>
         <th><%= form.label :status %></th>
         <td>
-          <%= form.radio_button :status, 1%>未着手
-          <%= form.radio_button :status, 2%>着手
-          <%= form.radio_button :status, 3%>完了
+          <% 1.upto(3) do |n| %>
+            <%= form.radio_button :status, n %>
+            <%= form.label :status, t("activerecord.attributes.task.status_#{n.to_s}"), {value: n} %>
+          <% end %>
+
         </td>
       </tr>
     </div>
@@ -50,6 +52,6 @@
 
 
   <div class="actions">
-    <%= form.submit "登録"%>
+    <%= form.submit %>
   </div>
 <% end %>

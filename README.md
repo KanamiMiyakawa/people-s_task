@@ -39,6 +39,20 @@
 
 
 
+
+### herokuへのデプロイ手順
+heroku login --interactive<br>
+rails assets:precompile RAILS_ENV=production<br>
+git add .<br>
+git commit -m ""<br>
+heroku create<br>
+heroku buildpacks:set heroku/ruby<br>
+heroku buildpacks:add --index 1 heroku/nodejs<br>
+git push heroku master<br>
+heroku run rails db:migrate<br>
+
+
+
 ### データ構造
 
 userとtaskを1対多で紐づけ、indexではそのuserが投稿したtaskだけ表示
