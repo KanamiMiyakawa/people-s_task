@@ -7,4 +7,9 @@ class Task < ApplicationRecord
   validates :limit, presence: true
   validates :status,  presence: true
 
+  scope :title_searched, -> (title){ where('task_name LIKE ?',"%#{title}%") }
+  scope :status_searched, -> (status){ where(status: status) }
+  scope :limit_sorted, -> { order(limit: "DESC") }
+  scope :created_sorted, -> { order(created_at: "DESC") }
+
 end
