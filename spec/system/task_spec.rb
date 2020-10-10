@@ -29,7 +29,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       it '作成済みのタスク一覧が表示される' do
         expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
         expect(page).to have_content 'Factoryで作ったデフォルトのコンテント２'
-        expect(page).to have_content '中'
+        expect(page).to have_content '不急'
         expect(page).to have_content '着手'
         expect(page).to have_content '2020-02-28'
       end
@@ -62,6 +62,19 @@ RSpec.describe 'タスク管理機能', type: :system do
             expect(task_limits[num]).to be >= task_limits[num+1]
             num += 1
           end
+        end
+      end
+    end
+    context 'タスクが優先順位(priority)の降順に並んでいる' do
+      it '緊急～不急の順に並んでいるか調べる' do
+        click_link '優先順位でソートする'
+        within '.task_tbody' do
+          task_priorities = all('.task_priority').map(&:text)
+          expect(task_priorities[0]).to eq "緊急"
+          expect(task_priorities[1]).to eq "高"
+          expect(task_priorities[2]).to eq "中"
+          expect(task_priorities[3]).to eq "低"
+          expect(task_priorities[4]).to eq "不急"
         end
       end
     end
