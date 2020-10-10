@@ -101,7 +101,7 @@ RSpec.describe 'タスク管理機能', type: :system do
      context 'タイトルであいまい検索をした場合' do
        it "検索キーワードを含むタスクで絞り込まれる" do
          fill_in "title", with: "ルパン"
-         click_button 'Search'
+         click_button '検索'
          within '.task_tbody' do
            #表示されている全タスク名を配列で取得
            task_titles = all('.task_title').map(&:text)
@@ -116,7 +116,7 @@ RSpec.describe 'タスク管理機能', type: :system do
      context 'scopeメソッドでステータス検索をした場合' do
        it "ステータスに完全一致するタスクが絞り込まれる" do
          select '未着手', from: 'status'
-         click_button 'Search'
+         click_button '検索'
          within '.task_tbody' do
            task_statuses = all('.task_status').map(&:text)
            expect(task_statuses.length).to be >= 3
@@ -130,7 +130,7 @@ RSpec.describe 'タスク管理機能', type: :system do
        it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
          fill_in "title", with: "ルパン"
          select '未着手', from: 'status'
-         click_button 'Search'
+         click_button '検索'
          within '.task_tbody' do
            task_titles = all('.task_title').map(&:text)
            task_statuses = all('.task_status').map(&:text)

@@ -14,3 +14,36 @@
  *= require_tree .
  *= require_self
  */
+
+/*body*/
+body {
+  background-color: #eef0f6;
+}
+/*header*/
+.navbar {
+  background-color: #3c52a6;
+  border: none;
+  border-radius: 0;
+}
+#header_logo {
+  color: #f1eef3;
+}
+.navbar-text {
+  margin: 0;
+}
+a:hover {
+  text-decoration: none;
+}
+/*main*/
+.base_bg {
+  background-color: #eef0f6;
+}
+.main {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 2px;
+  min-height: 80vh;
+}
+.main_wrapper {
+  padding:15px;
+}

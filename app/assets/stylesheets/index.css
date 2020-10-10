@@ -1,0 +1,12 @@
+/*index*/
+.search_form {
+  margin: 10px 15px;
+}
+.status_search_label {
+  margin-left: 10px;
+}
+.search_button {
+  padding: 4px 10px;
+  background-color: #3c72d1;
+  margin-left: 30px;
+}

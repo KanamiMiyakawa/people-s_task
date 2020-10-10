@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PeoplesTask</title>
+    <title>People'sTask</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,23 +11,34 @@
 
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="#">Features</a>
-          <a class="nav-item nav-link" href="#">Pricing</a>
-          <a class="nav-item nav-link disabled" href="#">Disabled</a>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" id="header_logo" href="/">People'sTask</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navigation">
+          <div class="navbar-text navbar-right">
+            <%= link_to new_task_path do %>
+              <button type="button" class="btn btn-default navbar-btn">新規作成</button>
+            <% end %>
+            <%= link_to tasks_path do %>
+              <button type="button" class="btn btn-default navbar-btn">トップ</button>
+            <% end %>
+            <%= link_to tasks_path do %>
+              <button type="button" class="btn btn-default navbar-btn">ユーザー詳細</button>
+            <% end %>
+            <%= link_to tasks_path do %>
+              <button type="button" class="btn btn-default navbar-btn">ログアウト</button>
+            <% end %>
+          </div>
         </div>
       </div>
     </nav>
-
-
-
 
     <%= yield %>
   </body>
