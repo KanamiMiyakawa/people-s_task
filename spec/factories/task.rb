@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :index_test1, class: Task do
     task_name { 'Factoryで作ったデフォルトのタイトル１' }
     content { 'Factoryで作ったデフォルトのコンテント１' }
-    priority {1}
+    priority {'不急'}
     limit {Date.today}
     status {'未着手'}
 
@@ -16,7 +16,7 @@ FactoryBot.define do
 
     factory :index_test3 do
       task_name {'Factoryで作ったデフォルトのタイトル３'}
-      priority {2}
+      priority {'中'}
       limit {Date.new(2020,4,15)}
     end
 
@@ -36,7 +36,7 @@ FactoryBot.define do
   factory :system_task, class: Task do
     task_name { 'Factoryで作ったデフォルトのタイトル２' }
     content { 'Factoryで作ったデフォルトのコンテント２' }
-    priority {2}
+    priority {'高'}
     limit {Date.new(2020,11,11)}
     status {'完了'}
   end
@@ -45,7 +45,7 @@ FactoryBot.define do
   factory :search_test1, class: Task do
     task_name { 'Factory生成タイトル１・ルパン' }
     content { 'Factory生成コンテント１'}
-    priority {1}
+    priority {'緊急'}
     limit {Date.today}
     status {'未着手'}
 

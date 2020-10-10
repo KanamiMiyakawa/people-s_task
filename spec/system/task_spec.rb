@@ -8,7 +8,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in "タスク名", with: 'task2'
         fill_in "詳細", with: 'taskcontent2'
-        select '1', from: '優先順位'
+        select '低', from: '優先順位'
         page.find('#task_limit').set("2021-01-01")
         choose '未着手'
         click_on '登録'
@@ -18,18 +18,18 @@ RSpec.describe 'タスク管理機能', type: :system do
   end
 
   describe '一覧表示機能' do
-    1.upto(5){
-      |n| task = FactoryBot.create(("index_test"+n.to_s).intern)
-      sleep 1
-    }
     before do
+      1.upto(5){
+        |n| task = FactoryBot.create(("index_test"+n.to_s).intern)
+        sleep 1
+      }
       visit tasks_path
     end
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
         expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
         expect(page).to have_content 'Factoryで作ったデフォルトのコンテント２'
-        expect(page).to have_content '2'
+        expect(page).to have_content '中'
         expect(page).to have_content '着手'
         expect(page).to have_content '2020-02-28'
       end
@@ -78,11 +78,11 @@ RSpec.describe 'タスク管理機能', type: :system do
    end
 
    describe '検索機能' do
-     1.upto(5){
-       |n| task = FactoryBot.create(("search_test"+n.to_s).intern)
-       sleep 1
-     }
      before do
+       1.upto(5){
+         |n| task = FactoryBot.create(("search_test"+n.to_s).intern)
+         sleep 1
+       }
        visit tasks_path
      end
      context 'タイトルであいまい検索をした場合' do
