@@ -4,6 +4,8 @@ class TasksController < ApplicationController
   def index
     if params[:sort_limit]
       @tasks = Task.all.limit_sorted
+    elsif params[:sort_priority]
+      @tasks = Task.all.priority_sorted
     elsif params[:title].present? && params[:status].present?
       @tasks = Task.title_searched(params[:title]).status_searched(params[:status])
     elsif params[:title].present?

@@ -12,5 +12,6 @@ class Task < ApplicationRecord
   scope :status_searched, -> (status){ where(status: status) }
   scope :limit_sorted, -> { order(limit: "DESC") }
   scope :created_sorted, -> { order(created_at: "DESC") }
+  scope :priority_sorted, -> { order(priority: "DESC") }
 
 end
