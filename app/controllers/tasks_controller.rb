@@ -3,17 +3,17 @@ class TasksController < ApplicationController
 
   def index
     if params[:sort_limit]
-      @tasks = Task.all.limit_sorted
+      @tasks = Task.all.limit_sorted.page(params[:page]).per(5)
     elsif params[:sort_priority]
-      @tasks = Task.all.priority_sorted
+      @tasks = Task.all.priority_sorted.page(params[:page]).per(5)
     elsif params[:title].present? && params[:status].present?
-      @tasks = Task.title_searched(params[:title]).status_searched(params[:status])
+      @tasks = Task.title_searched(params[:title]).status_searched(params[:status]).page(params[:page]).per(5)
     elsif params[:title].present?
-      @tasks = Task.title_searched(params[:title])
+      @tasks = Task.title_searched(params[:title]).page(params[:page]).per(5)
     elsif params[:status].present?
-      @tasks = Task.status_searched(params[:status])
+      @tasks = Task.status_searched(params[:status]).page(params[:page]).per(5)
     else
-      @tasks = Task.all.created_sorted
+      @tasks = Task.all.created_sorted.page(params[:page]).per(5)
     end
   end
 
