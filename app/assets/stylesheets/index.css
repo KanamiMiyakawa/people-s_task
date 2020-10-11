@@ -10,3 +10,66 @@
   background-color: #3c72d1;
   margin-left: 30px;
 }
+#sort_limit_button {
+  margin-left: 10px;
+}
+.table_ths {
+  background-color: #d7e7ff;
+}
+.first_th {
+  border-radius: 10px 0 0 0;
+}
+.last_th {
+  border-radius: 0 10px 0 0;
+}
+.task_title_th {
+  width: 15%;
+}
+.task_content_th {
+  width: 20%;
+}
+.task_priority_th {
+  width: 10%;
+}
+.task_limit_th {
+  width: 15%;
+}
+.task_status_th {
+  width: 10%;
+}
+.task_created_at_th {
+  width: 15%;
+}
+.task_btns_th {
+  width: 15%;
+}
+.btn_show {
+  color: #3e75ff;
+  border: 1px solid #3e75ff;
+}
+.btn_show:hover {
+  color: #174aca;
+  border: 1px solid #174aca;
+  background-color: #afd9ff;
+}
+.btn_edit {
+  color: #30ae4f;
+  border: 1px solid #30ae4f;
+}
+.btn_edit:hover {
+  color: #006b1d;
+  border: 1px solid #006b1d;
+  background-color: #afe4b3;
+}
+.btn_delete {
+  color: #ff6565;
+  border: 1px solid #ff6565;
+}
+.btn_delete:hover {
+  color: #c23537;
+  border: 1px solid #c23537;
+  background-color: #ffa9b3;
+}
+.new_btn {
+  background-color: #3c72d1;
+}

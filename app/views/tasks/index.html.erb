@@ -20,16 +20,20 @@
       <%= link_to "優先順位でソートする", tasks_path(sort_priority: "true"), id: "sort_priority_button" %>
       <%= link_to "終了期限でソートする", tasks_path(sort_limit: "true"), id: "sort_limit_button" %>
 
-      <table>
+      <table class="table table-hover">
         <thead>
-          <tr>
-            <th><%= t('activerecord.attributes.task.task_name') %></th>
-            <th><%= t('activerecord.attributes.task.content') %></th>
-            <th><%= t('activerecord.attributes.task.priority') %></th>
-            <th><%= t('activerecord.attributes.task.limit') %></th>
-            <th><%= t('activerecord.attributes.task.status') %></th>
-            <th><%= t('activerecord.attributes.task.created_at') %></th>
-            <th colspan="3"></th>
+          <tr class="table_ths">
+            <th class="first_th task_title_th"><%= t('activerecord.attributes.task.task_name') %></th>
+            <th class="task_content_th"><%= t('activerecord.attributes.task.content') %></th>
+            <th class="task_priority_th">
+              <%= link_to "#{t('activerecord.attributes.task.priority')} ▼", tasks_path(sort_priority: "true"), id: "sort_priority_button" %>
+            </th>
+            <th class="task_limit_th">
+              <%= link_to "#{t('activerecord.attributes.task.limit')} ▼", tasks_path(sort_limit: "true"), id: "sort_limit_button" %>
+            </th>
+            <th class="task_status_th"><%= t('activerecord.attributes.task.status') %></th>
+            <th class="task_created_at_th"><%= t('activerecord.attributes.task.created_at') %></th>
+            <th colspan="3" class="last_th task_btns_th"></th>
           </tr>
         </thead>
 
@@ -41,10 +45,10 @@
               <td class="task_priority"><%= task.priority %></td>
               <td class="task_limit"><%= task.limit %></td>
               <td class="task_status"><%= task.status %></td>
-              <td class="task_created_at"><%= task.created_at %></td>
-              <td><%= link_to t('buttons.task_show'), task %></td>
-              <td><%= link_to t('buttons.task_edit'), edit_task_path(task) %></td>
-              <td><%= link_to t('buttons.task_delete'), task, method: :delete, data: { confirm: t('confirm.when_delete') } %></td>
+              <td class="task_created_at"><%= l task.created_at %></td>
+              <td><%= link_to t('buttons.task_show'), task, class: "btn btn-default btn_show"%></td>
+              <td><%= link_to t('buttons.task_edit'), edit_task_path(task), class: "btn btn-default btn_edit" %></td>
+              <td><%= link_to t('buttons.task_delete'), task, class: "btn btn-default btn_delete", method: :delete, data: { confirm: t('confirm.when_delete') } %></td>
             </tr>
           <% end %>
         </tbody>
@@ -52,7 +56,7 @@
       <%= paginate @tasks %>
       <br>
 
-      <%= link_to t('buttons.task_new'), new_task_path %>
+      <%= link_to t('buttons.task_new'), new_task_path, class: "btn btn-primary new_btn" %>
     </div>
   </div>
 </div>
