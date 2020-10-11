@@ -34,6 +34,12 @@ body {
 a:hover {
   text-decoration: none;
 }
+/*notice*/
+#notice {
+  color: red;
+  font-size: 2rem;
+  padding-left: 15px;
+}
 /*main*/
 .base_bg {
   background-color: #eef0f6;
