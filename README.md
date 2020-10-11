@@ -37,36 +37,53 @@
 | task_id  | integer  |
 | label_id | integer  |
 
-
+---
 
 
 ### herokuへのデプロイ手順
-heroku login --interactive<br>
-rails assets:precompile RAILS_ENV=production<br>
-git add .<br>
-git commit -m ""<br>
-heroku create<br>
-heroku buildpacks:set heroku/ruby<br>
-heroku buildpacks:add --index 1 heroku/nodejs<br>
-git push heroku master<br>
-heroku run rails db:migrate<br>
+
+```
+#herokuにログイン
+$ heroku login --interactive<br>
+
+#プリコンパイル
+$ rails assets:precompile RAILS_ENV=production<br>
+
+$ git add .<br>
+$ git commit -m ""<br>
+
+#herokuにアプリ作成
+$ heroku create<br>
+
+#必要があればbuild packを読み込む
+$ heroku buildpacks:set heroku/ruby<br>
+$ heroku buildpacks:add --index 1 heroku/nodejs<br>
+
+#herokuにアップロード
+$ git push heroku master<br>
+
+#db:migrateを忘れずに
+$ heroku run rails db:migrate<br>
+```
 
 
+---
 
-### データ構造
+### データ構造の概要
 
-userとtaskを1対多で紐づけ、indexではそのuserが投稿したtaskだけ表示
-taskとlabelを多対多で紐づけ、中間テーブルにlabellingsを設置
-userとlabelも1対多で紐づける
+- userとtaskを1対多で紐づけ、indexではそのuserが投稿したtaskだけ表示
+- taskとlabelを多対多で紐づけ、中間テーブルにlabellingsを設置
+- userとlabelも1対多で紐づける
 
-
+---
 
 ### その他
 
 要件から、絞り込みは３種類できなければならない、同時に2種類以上で検索するのはまた今度
-	・ステータス
-	・タスク名
-	・ラベル
+
+- ステータス
+- タスク名
+- ラベル
 
 絞り込みは一つのページ内で切り替えられればよいが（たぶんjavascripsでいける）
 難しければ違うページとして表示させればよい

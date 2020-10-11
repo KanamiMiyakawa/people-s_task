@@ -14,7 +14,7 @@ ja:
         content: 詳細
         priority: 優先順位
         limit: 期限
-        status: 状態
+        status: ステータス
         status_1: 未着手
         status_2: 着手
         status_3: 完了

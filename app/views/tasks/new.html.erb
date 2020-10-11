@@ -1,5 +1,13 @@
-<h1><%= t('titles.task_title_new') %></h1>
+<div class="container-fluid base_bg">
+  <div class="container main">
+    <div class="new_main_wrapper">
 
-<%= render 'form', task: @task %>
+      <h1><%= t('titles.task_title_new') %></h1>
 
-<%= link_to t('buttons.back'), tasks_path %>
+      <%= render 'form', task: @task %>
+
+      <%= link_to t('buttons.back'), tasks_path %>
+
+    </div>
+  </div>
+</div>

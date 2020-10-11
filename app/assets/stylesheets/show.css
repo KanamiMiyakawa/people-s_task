@@ -1,0 +1,13 @@
+/*show*/
+.show_table {
+  margin: 0 0 15px 15px;
+}
+.show_table tr {
+  height: 3rem;
+}
+.show_table tr td {
+  padding-left: 15px;
+}
+.show_btns {
+  margin: 20px 15px;
+}

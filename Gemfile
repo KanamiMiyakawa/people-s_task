@@ -14,6 +14,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails'
+  gem 'faker'
 end
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -26,3 +27,4 @@ group :test do
   gem 'webdrivers'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'kaminari'

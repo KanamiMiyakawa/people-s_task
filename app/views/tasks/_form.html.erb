@@ -27,7 +27,7 @@
     <div class="field">
       <tr>
         <th><%= form.label :priority %></th>
-        <td><%= form.select :priority, [1,2,3,4,5] %></td>
+        <td><%= form.select :priority, Task.priorities.keys %></td>
       </tr>
     </div>
     <div class="field">
@@ -40,11 +40,9 @@
       <tr>
         <th><%= form.label :status %></th>
         <td>
-          <% 1.upto(3) do |n| %>
-            <%= form.radio_button :status, n %>
-            <%= form.label :status, t("activerecord.attributes.task.status_#{n.to_s}"), {value: n} %>
+          <% Task.statuses.each do |key,val| %>
+            <label><%= form.radio_button :status, key %><%= key %></label>
           <% end %>
-
         </td>
       </tr>
     </div>
@@ -52,6 +50,6 @@
 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "new_submit_btn btn btn-primary new_btn"%>
   </div>
 <% end %>
