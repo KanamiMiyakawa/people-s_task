@@ -14,4 +14,6 @@ class Task < ApplicationRecord
   scope :created_sorted, -> { order(created_at: "DESC") }
   scope :priority_sorted, -> { order(priority: "DESC") }
 
+  belongs_to :user
+
 end
