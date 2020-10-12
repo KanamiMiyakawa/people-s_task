@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :favorites]
+  before_action :fobid_login_user, only: [:new]
 
   def new
     @user = User.new

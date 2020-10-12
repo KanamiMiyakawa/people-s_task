@@ -11,4 +11,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def fobid_login_user
+    if current_user
+      redirect_to tasks_path, notice: "すでにログインしています"
+    end
+  end
 end

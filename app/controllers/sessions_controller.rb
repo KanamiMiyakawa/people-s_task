@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  #before_action :fobid_login_user, only: [:new, :create]
+  before_action :fobid_login_user, only: [:new]
 
   def new
   end
