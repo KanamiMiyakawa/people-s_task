@@ -1,0 +1,23 @@
+/*new*/
+.user_new_wrapper {
+  padding: 15px;
+  text-align: center;
+}
+/*form*/
+.user_form {
+  margin: 30px auto;
+}
+.user_form tr {
+  height: 4rem;
+}
+/*show*/
+.user_show_table {
+  margin: 40px auto;
+}
+.user_show_table tr {
+  height: 4rem;
+}
+.user_show_table td {
+  padding-left: 25px;
+  text-align: left;
+}

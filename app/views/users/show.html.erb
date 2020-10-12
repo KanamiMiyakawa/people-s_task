@@ -1,0 +1,28 @@
+<div class="container-fluid base_bg">
+  <div class="container main">
+    <div class="user_new_wrapper">
+
+      <div class="user_show_content">
+        <h1>ユーザー詳細</h1>
+        <table class="user_show_table">
+          <tr>
+            <th><%= t('activerecord.attributes.user.name') %></th>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th><%= t('activerecord.attributes.user.emil') %></th>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <th><%= t('activerecord.attributes.user.created_at') %></th>
+            <td><%= l @user.created_at %></td>
+          </tr>
+        </table>
+        <div class="show_btns">
+          <%= link_to t('buttons.back'), tasks_path %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
