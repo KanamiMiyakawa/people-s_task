@@ -1,0 +1,54 @@
+<div class="container-fluid base_bg">
+  <div class="container main">
+    <div class="user_new_wrapper">
+
+      <h1 class="admin_index_h1">ユーザー作成（管理画面）</h1>
+
+      <%= form_with(model: @user, local: true, url: admin_user_path ) do |form| %>
+
+        <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <h2>登録中に<%= pluralize(@user.errors.count, "個") %>のエラーが発生しました</h2>
+            <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <table class="form_table user_form">
+          <div class="field">
+            <tr>
+              <th><%= form.label :name %></th>
+              <td><%= form.text_field :name %></td>
+            </tr>
+          </div>
+          <div class="field">
+            <tr>
+              <th><%= form.label :email %></th>
+              <td><%= form.text_field :email %></td>
+            </tr>
+          </div>
+          <div class="field">
+            <tr>
+              <th><%= form.label :password %></th>
+              <td><%= form.password_field :password %></td>
+            </tr>
+          </div>
+          <div class="field">
+            <tr>
+              <th><%= form.label :password_confirmation %></th>
+              <td><%= form.password_field :password_confirmation %></td>
+            </tr>
+          </div>
+        </table>
+        <div class="actions">
+          <%= form.submit class: "new_submit_btn btn btn-primary admin_new_btn" %>
+        </div>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>
