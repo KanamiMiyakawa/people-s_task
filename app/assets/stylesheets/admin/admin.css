@@ -1,0 +1,18 @@
+/*index*/
+.admin_index_h1 {
+  color: red;
+}
+.user_index {
+  margin: 25px 20px;
+  width: 100%;
+}
+.user_index tr {
+  height: 2.5rem;
+}
+.admin_new_btn {
+  background-color: #d23e4a;
+  border: 1px solid #893e4a;
+}
+.admin_new_btn:hover {
+  background-color: #893e4a;
+}
