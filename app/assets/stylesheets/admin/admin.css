@@ -1,6 +1,7 @@
 /*index*/
 .admin_index_h1 {
   color: red;
+  font-weight: bold;
 }
 .user_index {
   margin: 25px 20px;

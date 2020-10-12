@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def fobid_login_user
     if current_user
-      redirect_to tasks_path, notice: "すでにログインしています"
+      redirect_to tasks_path, notice: "すでにログインしています" unless current_user.admin?
     end
   end
 end
