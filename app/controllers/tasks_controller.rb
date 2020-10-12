@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user, only: [:index, :show, :new, :edit]
+  before_action :task_different_user, only: [:show, :edit, :destroy]
 
   def index
     if params[:sort_limit]
@@ -58,5 +59,12 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:task_name, :priority, :limit, :status, :content)
+  end
+
+  def task_different_user
+    @task = Task.find(params[:id])
+    if current_user.id != @task.user_id
+      redirect_to tasks_path, notice: "他のユーザーのタスクは見れません"
+    end
   end
 end
