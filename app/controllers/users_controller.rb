@@ -35,9 +35,11 @@ class UsersController < ApplicationController
   end
 
   def user_different
-    @user = User.find(params[:id])
-    if current_user.id != @user.id
-      redirect_to tasks_path, notice: "他のユーザーの情報は見せません" unless current_user.admin?
+    unless current_user.admin?
+      @user = User.find(params[:id])
+      if current_user.id != @user.id
+        redirect_to tasks_path, notice: "他のユーザーの情報は見せません"
+      end
     end
   end
 end
