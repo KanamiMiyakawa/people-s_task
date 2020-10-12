@@ -1,0 +1,12 @@
+/*new*/
+.user_new_wrapper {
+  padding: 15px;
+  text-align: center;
+}
+/*form*/
+.user_form {
+  margin: 30px auto;
+}
+.user_form tr {
+  height: 4rem;
+}
