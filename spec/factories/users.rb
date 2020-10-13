@@ -1,4 +1,13 @@
 FactoryBot.define do
+  #task_spec.rb用ユーザー
+  factory :user do
+    name {"factory_guy"}
+    email {"fac@example.com"}
+    password {"password"}
+    password_confirmation {"password"}
+  end
+
+  #user_spec.rb用ユーザー
   factory :user1, class: User do
     name {"factory_guy_1"}
     email {"fac1@example.com"}

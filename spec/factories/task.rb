@@ -42,6 +42,7 @@ FactoryBot.define do
     priority {'高'}
     limit {Date.new(2020,11,11)}
     status {'完了'}
+    user
   end
 
   #検索機能用
