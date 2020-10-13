@@ -1,9 +1,13 @@
 class Admin::UsersController < ApplicationController
   before_action :admin_user
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all.order(created_at: "DESC")
+    @users = User.eager_load(:tasks).order(created_at: "DESC")
+  end
+
+  def show
+    @tasks = @user.tasks.created_sorted.page(params[:page]).per(10)
   end
 
   def edit
