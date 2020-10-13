@@ -35,7 +35,7 @@
                 <button type="button" class="btn btn-default navbar-btn">ユーザー詳細</button>
               <% end %>
               <%= link_to session_path(current_user.id), method: :delete do %>
-                <button type="button" class="btn btn-default navbar-btn">ログアウト</button>
+                <button type="button" class="btn btn-default navbar-btn"　id="logout_button">ログアウト</button>
               <% end %>
             <% else %>
               <%= link_to new_user_path do %>
