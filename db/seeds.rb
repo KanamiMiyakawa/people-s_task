@@ -27,5 +27,6 @@
 #   password: 'password',
 #   password_confirmation: 'password',
 #   created_at: "2020-10-12 12:33:34",
-#   updated_at: "2020-10-12 12:33:34"
+#   updated_at: "2020-10-12 12:33:34",
+#   admin: true
 # )

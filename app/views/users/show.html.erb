@@ -20,6 +20,11 @@
         </table>
         <div class="show_btns">
           <%= link_to t('buttons.back'), tasks_path %>
+
+          <% if current_user.admin? %>
+            <p class="show_admin_bottun"><%= link_to "ユーザー一覧（管理画面）へ", admin_users_path, class: "btn btn-primary admin_new_btn" %></p>
+          <% end %>
+
         </div>
       </div>
 
