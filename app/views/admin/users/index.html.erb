@@ -8,6 +8,7 @@
       <table class="user_index">
         <tr>
           <th><%= t('activerecord.attributes.user.id') %></th>
+          <th>権限</th>
           <th><%= t('activerecord.attributes.user.name') %></th>
           <th><%= t('activerecord.attributes.user.email') %></th>
           <th><%= t('activerecord.attributes.user.created_at') %></th>
@@ -19,6 +20,7 @@
 
           <tr>
             <td><%= user.id %></td>
+            <td class="admin_sign"><%= "管理者" if user.admin? %></td>
             <td><%= user.name %></td>
             <td><%= user.email %></td>
             <td><%= l user.created_at %></td>

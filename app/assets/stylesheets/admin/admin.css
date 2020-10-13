@@ -10,6 +10,10 @@
 .user_index tr {
   height: 2.5rem;
 }
+.admin_sign {
+  color: red;
+  font-weight: bold;
+}
 .admin_new_btn {
   background-color: #d23e4a;
   border: 1px solid #893e4a;

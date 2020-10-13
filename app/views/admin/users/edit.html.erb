@@ -42,6 +42,17 @@
               <td><%= form.password_field :password_confirmation %></td>
             </tr>
           </div>
+          <div class="field">
+            <tr>
+              <th>権限</th>
+              <td>
+                <%= form.radio_button :admin, :true %>
+                <%= form.label :admin, "管理者", {value: :true, style: "display: inline-block;"} %>
+                <%= form.radio_button :admin, :false %>
+                <%= form.label :admin, "一般", {value: :true, style: "display: inline-block;"} %>
+              </td>
+            </tr>
+          </div>
         </table>
         <div class="actions">
           <%= form.submit class: "new_submit_btn btn btn-primary admin_new_btn" %>
