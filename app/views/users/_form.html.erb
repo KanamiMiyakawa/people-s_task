@@ -38,8 +38,10 @@
     </div>
   </table>
   <div class="actions">
-    <% if current_user.admin? %>
-      <%= form.submit class: "new_submit_btn btn btn-primary admin_new_btn" %>
+    <% if current_user.present? %>
+      <% if current_user.admin? %>
+        <%= form.submit class: "new_submit_btn btn btn-primary admin_new_btn" %>
+      <% end %>
     <% else %>
       <%= form.submit class: "new_submit_btn btn btn-primary new_btn" %>
     <% end %>

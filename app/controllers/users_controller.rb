@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show]
+  before_action :authenticate_user, only: [:show]
   before_action :fobid_login_user, only: [:new]
   before_action :user_different, only: [:show]
 
@@ -10,7 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      if current_user.admin?
+      if current_user.present?
         redirect_to admin_users_path, notice: 'ユーザーを作成しました！'
       else
         session[:user_id] = User.last.id
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
     unless current_user.admin?
       @user = User.find(params[:id])
       if current_user.id != @user.id
-        redirect_to tasks_path, notice: "他のユーザーの情報は見せません"
+        redirect_to tasks_path, notice: "他のユーザーの情報は見れません"
       end
     end
   end
