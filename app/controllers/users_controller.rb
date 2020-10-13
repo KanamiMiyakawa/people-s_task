@@ -11,12 +11,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      if current_user.present?
-        redirect_to admin_users_path, notice: 'ユーザーを作成しました！'
-      else
-        session[:user_id] = User.last.id
-        redirect_to tasks_path, notice: 'ユーザー登録が完了しました！'
-      end
+      session[:user_id] = User.last.id
+      redirect_to tasks_path, notice: 'ユーザー登録が完了しました！'
     else
       render :new
     end
