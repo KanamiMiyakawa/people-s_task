@@ -23,6 +23,36 @@
         <div class="show_btns">
           <%= link_to t('buttons.back'), admin_users_path %>
         </div>
+
+        <table class="table table-hover">
+          <thead>
+            <tr class="table_ths">
+              <th class="first_th task_title_th"><%= t('activerecord.attributes.task.task_name') %></th>
+              <th class="task_content_th"><%= t('activerecord.attributes.task.content') %></th>
+              <th class="task_priority_th"><%= t('activerecord.attributes.task.priority') %></th>
+              <th class="task_limit_th"><%= t('activerecord.attributes.task.limit') %></th>
+              <th class="task_status_th"><%= t('activerecord.attributes.task.status') %></th>
+              <th class="task_created_at_th"><%= t('activerecord.attributes.task.created_at') %></th>
+            </tr>
+          </thead>
+
+          <tbody class="task_tbody">
+            <% @tasks.each do |task| %>
+              <tr>
+                <td class="task_title"><%= task.task_name %></td>
+                <td><%= task.content %></td>
+                <td class="task_priority"><%= task.priority %></td>
+                <td class="task_limit"><%= task.limit %></td>
+                <td class="task_status"><%= task.status %></td>
+                <td class="task_created_at"><%= l task.created_at %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate @tasks %>
+
+
+
       </div>
 
     </div>
