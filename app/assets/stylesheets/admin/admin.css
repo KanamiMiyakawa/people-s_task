@@ -5,6 +5,11 @@
 }
 .official_label {
   display: inline-block;
+  margin-right: 20px;
+}
+.official_label svg {
+  font-size: 2rem;
+  color: red;
 }
 .user_index {
   margin: 25px 20px;

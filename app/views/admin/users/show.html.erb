@@ -20,10 +20,6 @@
         </table>
         <%= link_to t('buttons.task_edit'), edit_admin_user_path(@user), class: "new_submit_btn btn btn-primary admin_new_btn" %>
 
-        <div class="show_btns">
-          <%= link_to t('buttons.back'), admin_users_path %>
-        </div>
-
         <table class="table table-hover">
           <thead>
             <tr class="table_ths">
@@ -51,7 +47,9 @@
         </table>
         <%= paginate @tasks %>
 
-
+        <div class="show_btns">
+          <%= link_to t('buttons.back'), admin_users_path %>
+        </div>
 
       </div>
 

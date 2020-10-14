@@ -15,6 +15,8 @@ class Admin::LabelsController < ApplicationController
   end
 
   def destroy
+    Label.find(params[:id]).destroy!
+    redirect_to admin_users_path, notice: 'ラベルを削除しました！'
   end
 
   private
