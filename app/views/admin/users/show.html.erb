@@ -1,0 +1,60 @@
+<div class="container-fluid base_bg">
+  <div class="container main">
+    <div class="user_new_wrapper">
+
+      <div class="user_show_content">
+        <h1 class="admin_index_h1">ユーザー詳細（管理画面）</h1>
+        <table class="user_show_table">
+          <tr>
+            <th><%= t('activerecord.attributes.user.name') %></th>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th><%= t('activerecord.attributes.user.email') %></th>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <th><%= t('activerecord.attributes.user.created_at') %></th>
+            <td><%= l @user.created_at %></td>
+          </tr>
+        </table>
+        <%= link_to t('buttons.task_edit'), edit_admin_user_path(@user), class: "new_submit_btn btn btn-primary admin_new_btn" %>
+
+        <div class="show_btns">
+          <%= link_to t('buttons.back'), admin_users_path %>
+        </div>
+
+        <table class="table table-hover">
+          <thead>
+            <tr class="table_ths">
+              <th class="first_th task_title_th"><%= t('activerecord.attributes.task.task_name') %></th>
+              <th class="task_content_th"><%= t('activerecord.attributes.task.content') %></th>
+              <th class="task_priority_th"><%= t('activerecord.attributes.task.priority') %></th>
+              <th class="task_limit_th"><%= t('activerecord.attributes.task.limit') %></th>
+              <th class="task_status_th"><%= t('activerecord.attributes.task.status') %></th>
+              <th class="task_created_at_th"><%= t('activerecord.attributes.task.created_at') %></th>
+            </tr>
+          </thead>
+
+          <tbody class="task_tbody">
+            <% @tasks.each do |task| %>
+              <tr>
+                <td class="task_title"><%= task.task_name %></td>
+                <td><%= task.content %></td>
+                <td class="task_priority"><%= task.priority %></td>
+                <td class="task_limit"><%= task.limit %></td>
+                <td class="task_status"><%= task.status %></td>
+                <td class="task_created_at"><%= l task.created_at %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate @tasks %>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

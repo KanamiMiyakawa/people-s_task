@@ -1,0 +1,41 @@
+<div class="container-fluid base_bg">
+  <div class="container main">
+    <div class="main_wrapper">
+      <p id="notice"><%= notice %></p>
+
+      <h1 class="admin_index_h1">ユーザー一覧（管理画面）</h1>
+
+      <table class="user_index">
+        <tr>
+          <th><%= t('activerecord.attributes.user.id') %></th>
+          <th>権限</th>
+          <th><%= t('activerecord.attributes.user.name') %></th>
+          <th><%= t('activerecord.attributes.user.email') %></th>
+          <th><%= t('activerecord.attributes.user.created_at') %></th>
+          <th><%= t('activerecord.attributes.user.task_counts') %></th>
+          <th colspan="3"></th>
+        </tr>
+
+        <% @users.each do |user| %>
+
+          <tr>
+            <td><%= user.id %></td>
+            <td class="admin_sign"><%= "管理者" if user.admin? %></td>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= l user.created_at %></td>
+            <td><%= user.tasks.length %></td>
+            <td><%= link_to t('buttons.task_show'), admin_user_path(user) %></td>
+            <td><%= link_to t('buttons.task_edit'), edit_admin_user_path(user) %></td>
+            <td><%= link_to t('buttons.task_delete'), admin_user_path(user), class: "user_destroy", method: :delete, data: { confirm: t('confirm.when_delete') } %></td>
+          </tr>
+
+        <% end %>
+      </table>
+
+      <%= link_to "ユーザーを新規作成", new_admin_user_path, class: "btn btn-primary admin_new_btn" %>
+
+
+    </div>
+  </div>
+</div>

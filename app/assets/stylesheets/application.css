@@ -25,6 +25,9 @@ body {
   border: none;
   border-radius: 0;
 }
+ul {
+  list-style: none;
+}
 #header_logo {
   color: #f1eef3;
 }

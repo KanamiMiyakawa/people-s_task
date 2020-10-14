@@ -1,0 +1,14 @@
+<div class="container-fluid base_bg">
+  <div class="container main">
+    <div class="user_new_wrapper">
+
+      <% if current_user.present? %>
+        <h1 class="admin_index_h1">ユーザー作成（管理画面）</h1>
+      <% else %>
+        <h2 class="signup">新規登録！</h2>
+      <% end %>
+      <%= render 'form', user: @user %>
+
+    </div>
+  </div>
+</div>

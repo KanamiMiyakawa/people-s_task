@@ -24,17 +24,28 @@
         <div class="collapse navbar-collapse" id="navigation">
           <div class="navbar-text navbar-right">
             <%= link_to new_task_path do %>
-              <button type="button" class="btn btn-default navbar-btn">新規作成</button>
+              <button type="button" class="btn btn-default navbar-btn">タスク作成</button>
             <% end %>
             <%= link_to tasks_path do %>
               <button type="button" class="btn btn-default navbar-btn">トップ</button>
             <% end %>
-            <%= link_to tasks_path do %>
-              <button type="button" class="btn btn-default navbar-btn">ユーザー詳細</button>
+
+            <% if logged_in? %>
+              <%= link_to user_path(current_user.id) do %>
+                <button type="button" class="btn btn-default navbar-btn">ユーザー詳細</button>
+              <% end %>
+              <%= link_to session_path(current_user.id), method: :delete do %>
+                <button type="button" class="btn btn-default navbar-btn"　id="logout_button">ログアウト</button>
+              <% end %>
+            <% else %>
+              <%= link_to new_user_path do %>
+                <button type="button" class="btn btn-default navbar-btn">ユーザー登録</button>
+              <% end %>
+              <%= link_to new_session_path do %>
+                <button type="button" class="btn btn-default navbar-btn">ログイン</button>
+              <% end %>
             <% end %>
-            <%= link_to tasks_path do %>
-              <button type="button" class="btn btn-default navbar-btn">ログアウト</button>
-            <% end %>
+
           </div>
         </div>
       </div>

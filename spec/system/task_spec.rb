@@ -3,6 +3,13 @@ require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
 
   describe '新規作成機能' do
+    before do
+      @user = FactoryBot.create(:user)
+      visit new_session_path
+      fill_in "session_email", with: "fac@example.com"
+      fill_in "session_password", with: "password"
+      click_on 'login_button'
+    end
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
         visit new_task_path
@@ -19,10 +26,15 @@ RSpec.describe 'タスク管理機能', type: :system do
 
   describe '一覧表示機能' do
     before do
+    user = FactoryBot.create(:user)
       1.upto(5){
-        |n| task = FactoryBot.create(("index_test"+n.to_s).intern)
+        |n| task = FactoryBot.create(("index_test"+n.to_s).intern, user: user)
         sleep 1
       }
+      visit new_session_path
+      fill_in "session_email", with: "fac@example.com"
+      fill_in "session_password", with: "password"
+      click_on 'login_button'
       visit tasks_path
     end
     context '一覧画面に遷移した場合' do
@@ -84,6 +96,10 @@ RSpec.describe 'タスク管理機能', type: :system do
      context '任意のタスク詳細画面に遷移した場合' do
        it '該当タスクの内容が表示される' do
          task = FactoryBot.create(:system_task)
+         visit new_session_path
+         fill_in "session_email", with: "fac@example.com"
+         fill_in "session_password", with: "password"
+         click_on 'login_button'
          visit task_path(task.id)
          expect(page).to have_content 'Factoryで作ったデフォルトのコンテント２'
        end
@@ -92,10 +108,15 @@ RSpec.describe 'タスク管理機能', type: :system do
 
    describe '検索機能' do
      before do
+       user = FactoryBot.create(:user)
        1.upto(5){
-         |n| task = FactoryBot.create(("search_test"+n.to_s).intern)
+         |n| task = FactoryBot.create(("search_test"+n.to_s).intern, user: user)
          sleep 1
        }
+       visit new_session_path
+       fill_in "session_email", with: "fac@example.com"
+       fill_in "session_password", with: "password"
+       click_on 'login_button'
        visit tasks_path
      end
      context 'タイトルであいまい検索をした場合' do

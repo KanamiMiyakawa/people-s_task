@@ -18,3 +18,15 @@
 #                status: "着手",
 #                )
 # end
+
+#最初のユーザーを作成
+#seed実行前にlocale.rbの日本語設定をコメントアウトすること
+#  User.create!(
+#   name: 'test_admin_user',
+#   email: 'admin@example.com',
+#   password: 'password',
+#   password_confirmation: 'password',
+#   created_at: "2020-10-12 12:33:34",
+#   updated_at: "2020-10-12 12:33:34",
+#   admin: true
+# )

@@ -1,19 +1,21 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user, only: [:index, :show, :new, :edit]
+  before_action :task_different_user, only: [:show, :edit, :destroy]
 
   def index
     if params[:sort_limit]
-      @tasks = Task.all.limit_sorted.page(params[:page]).per(10)
+      @tasks = current_user.tasks.limit_sorted.page(params[:page]).per(10)
     elsif params[:sort_priority]
-      @tasks = Task.all.priority_sorted.page(params[:page]).per(10)
+      @tasks = current_user.tasks.priority_sorted.page(params[:page]).per(10)
     elsif params[:title].present? && params[:status].present?
-      @tasks = Task.title_searched(params[:title]).status_searched(params[:status]).page(params[:page]).per(10)
+      @tasks = current_user.tasks.title_searched(params[:title]).status_searched(params[:status]).page(params[:page]).per(10)
     elsif params[:title].present?
-      @tasks = Task.title_searched(params[:title]).page(params[:page]).per(10)
+      @tasks = current_user.tasks.title_searched(params[:title]).page(params[:page]).per(10)
     elsif params[:status].present?
-      @tasks = Task.status_searched(params[:status]).page(params[:page]).per(10)
+      @tasks = current_user.tasks.status_searched(params[:status]).page(params[:page]).per(10)
     else
-      @tasks = Task.all.created_sorted.page(params[:page]).per(10)
+      @tasks = current_user.tasks.created_sorted.page(params[:page]).per(10)
     end
   end
 
@@ -28,7 +30,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       redirect_to @task, notice: t('notice.task_created')
     else
@@ -57,5 +59,12 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:task_name, :priority, :limit, :status, :content)
+  end
+
+  def task_different_user
+    @task = Task.find(params[:id])
+    if current_user.id != @task.user_id
+      redirect_to tasks_path, notice: "他のユーザーのタスクは見れません"
+    end
   end
 end

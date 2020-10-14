@@ -19,6 +19,14 @@ ja:
         status_2: 着手
         status_3: 完了
         created_at: 作成日時
+      user:
+        id: ID
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        created_at: 登録日
+        task_counts: タスク数
   buttons:
     task_new: 新しいタスクを登録
     task_show: 詳細

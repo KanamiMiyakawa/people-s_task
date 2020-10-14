@@ -1,0 +1,33 @@
+/*new*/
+.new_main_wrapper {
+  padding: 15px 30px;
+}
+/*form*/
+.form_table {
+  margin: 10px 15px;
+}
+.form_table tr {
+  height: 3rem;
+}
+.form_table td {
+  padding-left: 15px;
+}
+.form_table td label {
+  padding-right: 15px;
+}
+.new_submit_btn {
+  margin-bottom: 15px;
+}
+/*show*/
+.show_table {
+  margin: 0 0 15px 15px;
+}
+.show_table tr {
+  height: 3rem;
+}
+.show_table tr td {
+  padding-left: 15px;
+}
+.show_btns {
+  margin: 20px 15px;
+}
