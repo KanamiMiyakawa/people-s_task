@@ -19,14 +19,19 @@
 #                )
 # end
 
-#最初のユーザーを作成
-#seed実行前にlocale.rbの日本語設定をコメントアウトすること
-#  User.create!(
-#   name: 'test_admin_user',
-#   email: 'admin@example.com',
-#   password: 'password',
-#   password_confirmation: 'password',
-#   created_at: "2020-10-12 12:33:34",
-#   updated_at: "2020-10-12 12:33:34",
-#   admin: true
-# )
+#公式ラベル管理者を作成
+label_manager = User.create!(
+  name: 'official_label_manager',
+  email: 'official@example.com',
+  password: 'password',
+  password_confirmation: 'password',
+  admin: true
+)
+labels = ["趣味","生活","仕事","勉強","人間関係"]
+labels.each do |official_label|
+  Label.create!(
+    label_name: "#{official_label}",
+    official: true,
+    user_id: label_manager.id
+  )
+end
