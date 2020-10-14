@@ -16,6 +16,9 @@
               <% end %>
             </li>
           <% end %>
+          <li class="official_label">
+            <%= link_to "公式ラベルを作成", new_admin_label_path, class: "btn btn-primary admin_new_btn" %>
+          </li>
         </ul>
       </div>
 
@@ -50,7 +53,6 @@
       </table>
 
       <%= link_to "ユーザーを新規作成", new_admin_user_path, class: "btn btn-primary admin_new_btn" %>
-      <%= link_to "公式ラベルを作成", new_admin_label_path, class: "btn btn-primary admin_new_btn" %>
 
 
     </div>

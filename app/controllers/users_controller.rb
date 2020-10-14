@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
   def show
     @tasks = @user.tasks.created_sorted.page(params[:page]).per(10)
+    @labels = Label.where(user_id:current_user.id, official:false)
   end
 
   private
