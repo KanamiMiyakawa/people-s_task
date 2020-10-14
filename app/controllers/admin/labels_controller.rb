@@ -6,8 +6,7 @@ class Admin::LabelsController < ApplicationController
   end
 
   def create
-    label_manager = User.find_by(name:"official_label_manager")
-    @label = Label.new(label_name:"#{params[:label][:label_name]}", official:true, user_id:label_manager.id)
+    @label = current_user.labels.build(label_params)
     if @label.save
       redirect_to admin_users_path, notice: '公式ラベルを作成しました！'
     else
@@ -18,4 +17,9 @@ class Admin::LabelsController < ApplicationController
   def destroy
   end
 
+  private
+
+  def label_params
+    params.require(:label).permit(:label_name, :official)
+  end
 end

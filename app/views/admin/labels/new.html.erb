@@ -4,6 +4,7 @@
 
       <h1 class="admin_index_h1">公式ラベル作成（管理画面）</h1>
       <%= form_with(model: @label, local: true, url: admin_labels_path ) do |form| %>
+        <%= form.hidden_field :official, value: true %>
 
         <% if @label.errors.any? %>
           <div id="error_explanation">

@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   before_validation { email.downcase! }
+  before_destroy :label_manager_check_destroy
   before_destroy :admin_count_check
+  before_save :label_manager_check_save
   before_update :admin_edit_check
 
   validates :name,  presence: true, length: { maximum: 30 }
@@ -25,5 +27,20 @@ class User < ApplicationRecord
       throw :abort
     end
   end
+
+  def label_manager_check_destroy
+    throw(:abort) if self.admin && self.name =="official_label_manager"
+  end
+
+  def label_manager_check_save
+    if self.name == "official_label_manager"
+      errors.add :base, 'この名前は使用できません'
+      throw :abort
+    elsif self.name_was == "official_label_manager"
+      errors.add :base, 'この名前は変更できません'
+      throw :abort
+    end
+  end
+
 
 end
