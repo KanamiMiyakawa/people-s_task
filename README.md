@@ -7,6 +7,8 @@
 | name            | string   |
 | email           | string   |
 | password_digest | string   |
+| admin           | boolean  |
+
 
 #### TaskModel
 
@@ -27,6 +29,7 @@
 | カラム名   | データ型 |
 | ---------- | -------- |
 | label_name | string   |
+| official   | boolean  |
 | user_id    | integer  |
 
 
