@@ -3,6 +3,15 @@
     <div class="main_wrapper">
       <p id="notice"><%= notice %></p>
 
+      <h1 class="admin_index_h1">公式ラベル一覧（管理画面）</h1>
+      <div>
+        <ul class="official_labels">
+          <% @labels.each do |label| %>
+            <li class="official_label"><%= label.label_name %></li>
+          <% end %>
+        </ul>
+      </div>
+
       <h1 class="admin_index_h1">ユーザー一覧（管理画面）</h1>
 
       <table class="user_index">
@@ -34,6 +43,7 @@
       </table>
 
       <%= link_to "ユーザーを新規作成", new_admin_user_path, class: "btn btn-primary admin_new_btn" %>
+      <%= link_to "公式ラベルを作成", new_admin_label_path, class: "btn btn-primary admin_new_btn" %>
 
 
     </div>

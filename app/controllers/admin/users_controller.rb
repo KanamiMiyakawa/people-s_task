@@ -4,6 +4,7 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = User.eager_load(:tasks).order(created_at: "DESC")
+    @labels = Label.where(official:true)
   end
 
   def new
@@ -46,10 +47,6 @@ class Admin::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
-  end
-
-  def admin_user
-    redirect_to tasks_path, notice: "管理者ではありません" unless current_user.admin?
   end
 
 end

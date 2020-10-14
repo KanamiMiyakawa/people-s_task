@@ -1,0 +1,34 @@
+<div class="container-fluid base_bg">
+  <div class="container main">
+    <div class="user_new_wrapper">
+
+      <h1 class="admin_index_h1">公式ラベル作成（管理画面）</h1>
+      <%= form_with(model: @label, local: true, url: admin_labels_path ) do |form| %>
+
+        <% if @label.errors.any? %>
+          <div id="error_explanation">
+            <h2>登録中に<%= pluralize(@label.errors.count, "個") %>のエラーが発生しました</h2>
+            <ul>
+            <% @label.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <table class="form_table user_form">
+          <div class="field">
+            <tr>
+              <th><%= form.label :label_name %></th>
+              <td><%= form.text_field :label_name %></td>
+            </tr>
+          </div>
+        </table>
+        <div class="actions">
+          <%= form.submit class: "new_submit_btn btn btn-primary admin_new_btn" %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
       redirect_to tasks_path, notice: "すでにログインしています" unless current_user.admin?
     end
   end
+
+  def admin_user
+    redirect_to tasks_path, notice: "管理者ではありません" unless current_user.admin?
+  end
 end
