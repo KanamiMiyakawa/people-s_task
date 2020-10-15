@@ -23,10 +23,13 @@
   border-radius: 0 10px 0 0;
 }
 .task_title_th {
-  width: 15%;
+  width: 14%;
 }
 .task_content_th {
-  width: 20%;
+  width: 15%;
+}
+.task_label_th {
+  width: 12%;
 }
 .task_priority_th {
   width: 10%;
@@ -38,10 +41,13 @@
   width: 10%;
 }
 .task_created_at_th {
-  width: 15%;
+  width: 14%;
 }
 .task_btns_th {
-  width: 15%;
+  width: 10%;
+}
+.task_tbody .label_index {
+  margin: 5px 2px;
 }
 .btn_show {
   color: #3e75ff;
