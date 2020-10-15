@@ -2,18 +2,31 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user, only: [:index, :show, :new, :edit]
   before_action :task_different_user, only: [:show, :edit, :destroy]
+  before_action :get_available_labels, only: [:index, :new, :edit]
 
   def index
     if params[:sort_limit]
       @tasks = current_user.tasks.limit_sorted.page(params[:page]).per(10)
     elsif params[:sort_priority]
       @tasks = current_user.tasks.priority_sorted.page(params[:page]).per(10)
+
+    elsif params[:title].present? && params[:status].present? && params[:label_id].present?
+      @tasks = current_user.tasks.title_searched(params[:title]).status_searched(params[:status]).label_searched(params[:label_id]).page(params[:page]).per(10)
+
     elsif params[:title].present? && params[:status].present?
       @tasks = current_user.tasks.title_searched(params[:title]).status_searched(params[:status]).page(params[:page]).per(10)
+    elsif params[:title].present? && params[:label_id].present?
+      @tasks = current_user.tasks.title_searched(params[:title]).label_searched(params[:label_id]).page(params[:page]).per(10)
+    elsif params[:status].present? && params[:label_id].present?
+      @tasks = current_user.tasks.status_searched(params[:status]).label_searched(params[:label_id]).page(params[:page]).per(10)
+
     elsif params[:title].present?
       @tasks = current_user.tasks.title_searched(params[:title]).page(params[:page]).per(10)
     elsif params[:status].present?
       @tasks = current_user.tasks.status_searched(params[:status]).page(params[:page]).per(10)
+    elsif params[:label_id].present?
+      @tasks = current_user.tasks.label_searched(params[:label_id]).page(params[:page]).per(10)
+
     else
       @tasks = current_user.tasks.created_sorted.page(params[:page]).per(10)
     end
@@ -25,11 +38,9 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    @labels = Label.where(official:true).or(Label.where(user_id:current_user.id))
   end
 
   def edit
-    @labels = Label.where(official:true).or(Label.where(user_id:current_user.id))
   end
 
   def create

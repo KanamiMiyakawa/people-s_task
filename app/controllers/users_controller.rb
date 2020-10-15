@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user, only: [:show]
   before_action :fobid_login_user, only: [:new]
   before_action :user_different, only: [:show]
+  before_action :get_available_labels, only: [:show]
 
   def new
     @user = User.new
@@ -20,7 +21,6 @@ class UsersController < ApplicationController
 
   def show
     @tasks = @user.tasks.created_sorted.page(params[:page]).per(10)
-    @labels = Label.where(user_id:current_user.id).or(Label.where(official:true))
   end
 
   private

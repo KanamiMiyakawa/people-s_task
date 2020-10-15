@@ -24,4 +24,8 @@ class ApplicationController < ActionController::Base
   def admin_user
     redirect_to tasks_path, notice: "管理者ではありません" unless current_user.admin?
   end
+
+  def get_available_labels
+    @labels = Label.where(official:true).or(Label.where(user_id:current_user.id))
+  end
 end
