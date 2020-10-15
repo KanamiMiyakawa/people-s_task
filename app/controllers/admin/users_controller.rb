@@ -22,6 +22,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @tasks = @user.tasks.created_sorted.page(params[:page]).per(10)
+    @labels = Label.where(user_id:@user.id)
   end
 
   def edit

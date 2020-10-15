@@ -18,9 +18,20 @@
             <td><%= l @user.created_at %></td>
           </tr>
         </table>
-        
-        <%= link_to t('buttons.task_edit'), edit_admin_user_path(@user), class: "new_submit_btn btn btn-primary admin_new_btn" %>
 
+        <%= link_to t('buttons.task_edit'), edit_admin_user_path(@user), class: "new_submit_btn btn btn-primary admin_new_btn" %>
+        <hr>
+        <br>
+        <h1 class="admin_index_h1">ユーザー作成ラベル（管理画面）</h1>
+        <ul class="show_labels" >
+          <% @labels.each do |label| %>
+            <li class="show_label">
+              <span class="user_label user_show_label"><%= label.label_name %></span>
+            </li>
+          <% end %>
+        </ul>
+        <br>
+        <br>
         <table class="table table-hover">
           <thead>
             <tr class="table_ths">
