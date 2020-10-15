@@ -46,8 +46,21 @@
         </td>
       </tr>
     </div>
+    <div class="field">
+      <tr>
+        <th>ラベル</th>
+        <td>
+          <% labels.each do |label| %>
+            <%= form.check_box :label_ids, {multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+            <% if label.official? %>
+              <span class="official_label"><%= label.label_name %></span>
+            <% else %>
+              <span class="user_label"><%= label.label_name %></span>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
   </table>
-
 
   <div class="actions">
     <%= form.submit class: "new_submit_btn btn btn-primary new_btn"%>

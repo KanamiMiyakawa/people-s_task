@@ -20,10 +20,12 @@ class TasksController < ApplicationController
   end
 
   def show
+    @labels = @task.labels
   end
 
   def new
     @task = Task.new
+    @labels = Label.where(official:true).or(Label.where(user_id:current_user.id))
   end
 
   def edit
@@ -58,7 +60,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:task_name, :priority, :limit, :status, :content)
+    params.require(:task).permit(:task_name, :priority, :limit, :status, :content, label_ids: [])
   end
 
   def task_different_user
