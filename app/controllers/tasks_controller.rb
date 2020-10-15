@@ -29,6 +29,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @labels = Label.where(official:true).or(Label.where(user_id:current_user.id))
   end
 
   def create

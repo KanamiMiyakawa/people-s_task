@@ -45,6 +45,9 @@
   border-radius: 7px;
   margin-right: 20px;
 }
+.show_label .user_show_label {
+  margin: 0;
+}
 .official_label {
   background-color: #d3ffd3;
   padding: 3px 5px;
