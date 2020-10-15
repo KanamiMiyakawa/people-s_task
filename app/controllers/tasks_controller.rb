@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user, only: [:index, :show, :new, :edit]
   before_action :task_different_user, only: [:show, :edit, :destroy]
-  before_action :get_available_labels, only: [:index, :new, :edit]
+  before_action :get_available_labels, only: [:index, :new, :create, :edit, :update]
 
   def index
     if params[:sort_limit]
