@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.eager_load(:tasks).order(created_at: "DESC")
+    @users = User.eager_load(:tasks).order(created_at: "DESC").page(params[:page]).per(15)
     @labels = Label.where(official:true)
   end
 

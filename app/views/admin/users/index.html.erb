@@ -51,6 +51,7 @@
 
         <% end %>
       </table>
+      <%= paginate @users %>
 
       <%= link_to "ユーザーを新規作成", new_admin_user_path, class: "btn btn-primary admin_new_btn" %>
 
