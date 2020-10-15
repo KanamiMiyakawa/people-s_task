@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'labellings/create'
+  get 'labellings/destroy'
   root 'tasks#index'
 
   resources :tasks
