@@ -15,8 +15,11 @@ class LabelsController < ApplicationController
   end
 
   def destroy
-    Label.find(params[:id]).destroy!
-    redirect_to user_path(current_user.id), notice: 'ラベルを削除しました！'
+    if Label.find(params[:id]).destroy
+      redirect_to user_path(current_user.id), notice: 'ラベルを削除しました！'
+    else
+      redirect_to user_path(current_user.id), notice: 'ラベルを削除できませんでした'
+    end
   end
 
   private
