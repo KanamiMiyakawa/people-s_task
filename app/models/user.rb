@@ -33,7 +33,7 @@ class User < ApplicationRecord
   end
 
   def label_manager_check_save
-    if self.name == "official_label_manager"
+    if self.name == "official_label_manager" && User.where(admin: true).count == 1
       errors.add :base, 'この名前は使用できません'
       throw :abort
     elsif self.name_was == "official_label_manager"
