@@ -9,5 +9,4 @@ Rails.application.routes.draw do
     resources :labels, only: [:new, :create, :destroy]
   end
   resources :sessions, only: [:new, :create, :destroy]
-  resources :labellings, only: [:create, :destroy]
 end
