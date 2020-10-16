@@ -34,3 +34,18 @@
 .show_btns {
   margin: 20px 15px;
 }
+/*search*/
+.above_searched_words {
+  font-size: 2rem;
+  background-color: #dfebff;
+  padding: 5px;
+  margin: 0 40px 20px 30px;
+  border: 1px solid #a4b8e8;
+}
+.searched_key {
+  font-weight: bold;
+  padding-left: 20px;
+}
+.searched_value {
+  color: red;
+}

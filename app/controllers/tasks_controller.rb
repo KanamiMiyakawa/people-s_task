@@ -5,6 +5,12 @@ class TasksController < ApplicationController
   before_action :get_available_labels, only: [:index, :new, :create, :edit, :update]
 
   def index
+    if params[:commit] == "検索"
+      @searched_words = {}
+      @searched_words.store("タスク名", params[:title]) if params[:title].present?
+      @searched_words.store("ラベル", Label.find(params[:label_id]).label_name) if params[:label_id].present?
+      @searched_words.store("ステータス", params[:status]) if params[:status].present?
+    end
     if params[:sort_limit]
       @tasks = current_user.tasks.limit_sorted.page(params[:page]).per(10)
     elsif params[:sort_priority]

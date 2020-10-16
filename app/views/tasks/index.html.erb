@@ -5,6 +5,17 @@
 
       <h1><%= t('titles.task_title_index') %></h1>
 
+      <% if @searched_words %>
+        <ul class="above_searched_words">次のワードで検索しました
+          <li class="searched_words">
+            <% @searched_words.each do |key,value| %>
+              <span class="searched_key"><%= "#{key}:"%></span>
+              <span class="searched_value"><%= "『#{value}』" %></span>
+            <% end %>
+          </li>
+        </ul>
+      <% end %>
+
       <div class="search_form">
         <%= form_with url: tasks_path, method: :get, local: true do |form| %>
           <%= form.label :title , t('activerecord.attributes.task.task_name') %>
