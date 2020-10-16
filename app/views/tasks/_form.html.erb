@@ -51,7 +51,7 @@
         <th>ラベル</th>
         <td>
           <% labels.each do |label| %>
-            <%= form.check_box :label_ids, {multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+            <%= form.check_box :label_ids, {multiple: true, checked: @task.labels.include?(label), disabled: label[:disabled], include_hidden: false }, label[:id] %>
             <% if label.official? %>
               <span class="official_label official_label_task_new"><%= label.label_name %></span>
             <% else %>
