@@ -52,11 +52,7 @@
         <td>
           <% labels.each do |label| %>
             <%= form.check_box :label_ids, {multiple: true, checked: @task.labels.include?(label), disabled: label[:disabled], include_hidden: false }, label[:id] %>
-            <% if label.official? %>
-              <span class="official_label official_label_task_new"><%= label.label_name %></span>
-            <% else %>
-              <span class="user_label"><%= label.label_name %></span>
-            <% end %>
+            <%= content_tag :span, label.label_name, class: official_or_user_label(label) %>
           <% end %>
         </td>
       </tr>
