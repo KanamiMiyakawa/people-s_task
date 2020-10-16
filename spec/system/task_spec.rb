@@ -64,6 +64,8 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'タスクが期限(limit)の降順に並んでいる場合' do
       it 'あるタスクの期限(limit)が次に並んでいるタスクより必ず大きい' do
         click_link '終了期限でソートする'
+        #要素の表示を待つためのhelperメソッド呼び出し
+        wait_element('.task_limit')
         within '.task_tbody' do
           #期限(limit)のテキストを配列にして取得
           task_limits = all('.task_limit').map(&:text)
@@ -80,6 +82,8 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'タスクが優先順位(priority)の降順に並んでいる' do
       it '緊急～不急の順に並んでいるか調べる' do
         click_link '優先順位でソートする'
+        #要素の表示を待つためのhelperメソッド呼び出し
+        wait_element('.task_priority')
         within '.task_tbody' do
           task_priorities = all('.task_priority').map(&:text)
           expect(task_priorities[0]).to eq "緊急"

@@ -31,7 +31,7 @@
             <th class="task_priority_th">
               <%= link_to "#{t('activerecord.attributes.task.priority')} ▼", tasks_path(sort_priority: "true"), id: "sort_priority_button" %>
             </th>
-            <th class="task_limit_th">
+            <th class="task_limit_th" id="task_limit_th_id">
               <%= link_to "#{t('activerecord.attributes.task.limit')} ▼", tasks_path(sort_limit: "true"), id: "sort_limit_button" %>
             </th>
             <th class="task_status_th"><%= t('activerecord.attributes.task.status') %></th>

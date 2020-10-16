@@ -127,6 +127,8 @@ RSpec.describe 'ラベリング機能', type: :system do
         expect(page).to have_content 'official_label_1' && 'user_label_1'
         #さきほどとは別のラベルを付与
         click_on '編集'
+        uncheck("task_label_ids_#{@official_label_1.id}")
+        uncheck("task_label_ids_#{@user_label_1.id}")
         check("task_label_ids_#{@official_label_2.id}")
         check("task_label_ids_#{@user_label_2.id}")
         click_on '更新する'
