@@ -2,6 +2,19 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 
+def wait_element(element)
+  loop{
+    sleep 1
+    p 'waitting....'
+    begin
+      check = first(element).text
+      p 'OK'
+      break
+    rescue
+    end
+  }
+end
+
 require File.expand_path('../config/environment', __dir__)
 
 # Prevent database truncation if the environment is production

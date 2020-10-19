@@ -16,6 +16,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'pry-rails'
 end
 group :development do
   gem 'web-console', '>= 3.3.0'

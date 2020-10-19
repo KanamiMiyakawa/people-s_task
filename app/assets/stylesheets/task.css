@@ -18,6 +18,9 @@
 .new_submit_btn {
   margin-bottom: 15px;
 }
+.official_label_task_new {
+  margin-right: 20px;
+}
 /*show*/
 .show_table {
   margin: 0 0 15px 15px;
@@ -30,4 +33,19 @@
 }
 .show_btns {
   margin: 20px 15px;
+}
+/*search*/
+.above_searched_words {
+  font-size: 2rem;
+  background-color: #dfebff;
+  padding: 5px;
+  margin: 0 40px 20px 30px;
+  border: 1px solid #a4b8e8;
+}
+.searched_key {
+  font-weight: bold;
+  padding-left: 20px;
+}
+.searched_value {
+  color: red;
 }

@@ -37,6 +37,9 @@ ul {
 a:hover {
   text-decoration: none;
 }
+#header_admin_button {
+  color: #f1eef3;
+}
 /*notice*/
 #notice {
   color: red;

@@ -5,10 +5,23 @@
 
       <h1><%= t('titles.task_title_index') %></h1>
 
+      <% if @searched_words %>
+        <ul class="above_searched_words">次のワードで検索しました
+          <li class="searched_words">
+            <% @searched_words.each do |key,value| %>
+              <span class="searched_key"><%= "#{key}:"%></span>
+              <span class="searched_value"><%= "『#{value}』" %></span>
+            <% end %>
+          </li>
+        </ul>
+      <% end %>
+
       <div class="search_form">
         <%= form_with url: tasks_path, method: :get, local: true do |form| %>
           <%= form.label :title , t('activerecord.attributes.task.task_name') %>
           <%= form.text_field :title %>
+          <label for="label_id">ラベル</label>
+          <%= form.select :label_id, @labels.collect {|l| [l.label_name, l.id]}, include_blank: true %>
           <%= form.label :status, t('activerecord.attributes.task.status'), class: "status_search_label" %>
           <%= form.select :status, Task.statuses.keys, {include_blank: true} %>
           <%= form.submit '検索' , class: "btn btn-primary search_button"%>
@@ -25,10 +38,11 @@
           <tr class="table_ths">
             <th class="first_th task_title_th"><%= t('activerecord.attributes.task.task_name') %></th>
             <th class="task_content_th"><%= t('activerecord.attributes.task.content') %></th>
+            <th class="task_label_th">ラベル</th>
             <th class="task_priority_th">
               <%= link_to "#{t('activerecord.attributes.task.priority')} ▼", tasks_path(sort_priority: "true"), id: "sort_priority_button" %>
             </th>
-            <th class="task_limit_th">
+            <th class="task_limit_th" id="task_limit_th_id">
               <%= link_to "#{t('activerecord.attributes.task.limit')} ▼", tasks_path(sort_limit: "true"), id: "sort_limit_button" %>
             </th>
             <th class="task_status_th"><%= t('activerecord.attributes.task.status') %></th>
@@ -42,6 +56,15 @@
             <tr>
               <td class="task_title"><%= task.task_name %></td>
               <td><%= task.content %></td>
+              <td>
+                <% task.labels.each do |label| %>
+                  <% if label.official? %>
+                    <span class="official_label label_index"><%= label.label_name %></span>
+                  <% else %>
+                    <span class="user_label label_index"><%= label.label_name %></span>
+                  <% end %>
+                <% end %>
+              </td>
               <td class="task_priority"><%= task.priority %></td>
               <td class="task_limit"><%= task.limit %></td>
               <td class="task_status"><%= task.status %></td>

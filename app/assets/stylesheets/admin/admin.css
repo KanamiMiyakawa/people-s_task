@@ -3,6 +3,14 @@
   color: red;
   font-weight: bold;
 }
+.official_label svg {
+  font-size: 2rem;
+  color: red;
+}
+.official_labels_li {
+  display: inline-block;
+  margin-right: 20px;
+}
 .user_index {
   margin: 25px 20px;
   width: 100%;

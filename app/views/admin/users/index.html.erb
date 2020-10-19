@@ -3,6 +3,25 @@
     <div class="main_wrapper">
       <p id="notice"><%= notice %></p>
 
+      <h1 class="admin_index_h1">公式ラベル一覧（管理画面）</h1>
+      <div>
+        <ul class="official_labels">
+          <% @labels.each do |label| %>
+            <li class="official_labels_li">
+              <span class="official_label"><%= label.label_name %></span>
+              <%= link_to admin_label_path(label.id), method: :delete, class: "label_delete_link", data: { confirm: t('confirm.when_delete') } do %>
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+</svg>
+              <% end %>
+            </li>
+          <% end %>
+          <li class="official_labels_li">
+            <%= link_to "公式ラベルを作成", new_admin_label_path, class: "btn btn-primary admin_new_btn" %>
+          </li>
+        </ul>
+      </div>
+
       <h1 class="admin_index_h1">ユーザー一覧（管理画面）</h1>
 
       <table class="user_index">
@@ -32,6 +51,7 @@
 
         <% end %>
       </table>
+      <%= paginate @users %>
 
       <%= link_to "ユーザーを新規作成", new_admin_user_path, class: "btn btn-primary admin_new_btn" %>
 

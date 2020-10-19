@@ -3,7 +3,8 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.eager_load(:tasks).order(created_at: "DESC")
+    @users = User.eager_load(:tasks).order(created_at: "DESC").page(params[:page]).per(15)
+    @labels = Label.where(official:true)
   end
 
   def new
@@ -21,6 +22,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @tasks = @user.tasks.created_sorted.page(params[:page]).per(10)
+    @labels = Label.where(user_id:@user.id, official:false)
   end
 
   def edit
@@ -38,7 +40,7 @@ class Admin::UsersController < ApplicationController
     if @user.destroy
       redirect_to admin_users_path, notice: 'ユーザーを削除しました！'
     else
-      redirect_to admin_users_path, notice: '最後の管理ユーザーです'
+      redirect_to admin_users_path, notice: 'official_label_managerは削除できません'
     end
   end
 
@@ -46,10 +48,6 @@ class Admin::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
-  end
-
-  def admin_user
-    redirect_to tasks_path, notice: "管理者ではありません" unless current_user.admin?
   end
 
 end

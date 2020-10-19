@@ -46,8 +46,17 @@
         </td>
       </tr>
     </div>
+    <div class="field">
+      <tr>
+        <th>ラベル</th>
+        <td>
+          <% labels.each do |label| %>
+            <%= form.check_box :label_ids, {multiple: true, checked: @task.labels.include?(label), disabled: label[:disabled], include_hidden: false }, label[:id] %>
+            <%= content_tag :span, label.label_name, class: official_or_user_label(label) %>
+          <% end %>
+        </td>
+      </tr>
   </table>
-
 
   <div class="actions">
     <%= form.submit class: "new_submit_btn btn btn-primary new_btn"%>
