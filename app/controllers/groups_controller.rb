@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :only_owner, only: [:edit, :update, :destroy]
 
   def index
     @groups = Group.all
@@ -26,7 +27,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to @group, notice: 'Group was successfully updated.'
+      redirect_to @group, notice: 'グループを更新しました'
     else
       render :edit
     end
@@ -34,7 +35,7 @@ class GroupsController < ApplicationController
 
   def destroy
     @group.destroy
-    redirect_to groups_url, notice: 'Group was successfully destroyed.'
+    redirect_to groups_url, notice: 'グループを削除しました'
   end
 
   private
@@ -45,5 +46,11 @@ class GroupsController < ApplicationController
 
   def group_params
     params.require(:group).permit(:group_name, :group_detail)
+  end
+
+  def only_owner
+    if current_user.id != @group.user.id
+      redirect_to groups_path, notice: 'グループ作成者のみ可能です'
+    end
   end
 end
