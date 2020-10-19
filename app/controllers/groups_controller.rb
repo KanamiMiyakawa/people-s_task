@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   before_action :only_owner, only: [:edit, :update, :destroy]
+  before_action :only_member, only: [:show]
 
   def index
     @groups = Group.all
@@ -52,6 +53,12 @@ class GroupsController < ApplicationController
   def only_owner
     if current_user.id != @group.user.id
       redirect_to groups_path, notice: 'グループ作成者のみ可能です'
+    end
+  end
+
+  def only_member
+    unless @group.users.include?(current_user)
+      redirect_to groups_path, notice: 'グループ参加者のみ可能です'
     end
   end
 end
