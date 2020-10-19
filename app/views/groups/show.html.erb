@@ -5,7 +5,7 @@
 
       <h1><%= @group.group_name %>グループ</h1>
 
-      <table>
+      <table class="group_members_table">
         <tr>
           <th>オーナー</th>
           <td><%= @group.user.name %></td>
@@ -18,7 +18,7 @@
 
       <table class="table table-hover group_table_index">
         <thead>
-          <tr class="table_ths">
+          <tr class="group_table_ths">
             <th class="first_th task_title_th"><%= t('activerecord.attributes.task.task_name') %></th>
             <th class="task_content_th"><%= t('activerecord.attributes.task.content') %></th>
             <th class="task_label_th">ラベル</th>
@@ -57,7 +57,7 @@
       </table>
       <%= paginate @group_tasks %>
 
-      <%= link_to t('buttons.back'), groups_path %>
+      <p><%= link_to t('buttons.back'), groups_path %></p>
     </div>
   </div>
 </div>

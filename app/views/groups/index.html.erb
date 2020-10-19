@@ -8,21 +8,27 @@
       <table class="table table-hover group_table_index">
         <thead>
           <tr class="group_table_ths">
-            <th class="first_th">グループ名</th>
+            <th class="first_th"> </th>
+            <th>グループ名</th>
             <th>詳細</th>
             <th>参加人数</th>
             <th>オーナー</th>
-            <th colspan="3" class="last_th"></th>
+            <th colspan="3" class="last_th group_btns_th"></th>
           </tr>
         </thead>
 
         <tbody>
           <% @groups.each do |group| %>
             <tr>
+              <% if current_user.id == group.user.id %>
+                <td class="group_table_owner_td">オーナー</td>
+              <% elsif group.users.include?(current_user) %>
+                <td class="group_table_member_td">参加中</td>
+              <% end %>
               <td><%= group.group_name %></td>
               <td><%= group.group_detail %></td>
               <td><%= group.users.count %></td>
-              <th><%= group.user.name %></th>
+              <td><%= group.user.name %></td>
 
               <% if group.user.id == current_user.id %>
                 <td><%= link_to '詳細', group %></td>
@@ -31,6 +37,7 @@
               <% elsif group.users.include?(current_user) %>
                 <td><%= link_to '詳細', group %></td>
                 <td><%= link_to 'グループから離脱する', grouping_path(id:current_user.groupings.find_by(group_id:group.id).id, current_user_id:current_user.id), method: :delete, data: { confirm: '本当に離脱してもいいですか？' } %></td>
+                <td></td>
               <% else %>
                 <td><%= link_to 'グループに参加する', groupings_path(group_id:group.id), method: :post, data: { confirm: '本当に参加してもいいですか？'} %></td>
               <% end %>

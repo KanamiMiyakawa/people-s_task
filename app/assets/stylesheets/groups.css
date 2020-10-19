@@ -1,3 +1,24 @@
 .group_table_ths {
   background-color: #dcffdc;
 }
+.group_table_ths .first_th {
+  width: 10%;
+}
+.group_members_table {
+  margin: 0 20px 20px 20px;
+}
+.group_members_table td{
+  padding-left: 10px;
+}
+.group_btns_th {
+  width: 30%;
+  text-align: center;
+}
+.group_table_owner_td {
+  color: red;
+  font-weight: bold;
+}
+.group_table_member_td {
+  color: green;
+  font-weight: bold;
+}
