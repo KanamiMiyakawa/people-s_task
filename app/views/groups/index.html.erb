@@ -30,7 +30,7 @@
                 <td><%= link_to '削除', group, method: :delete, data: { confirm: '本当に削除してもいいですか？' } %></td>
               <% elsif group.users.include?(current_user) %>
                 <td><%= link_to '詳細', group %></td>
-                <td><%= link_to 'グループから離脱する', grouping_path(id:current_user.groupings.find_by(group_id:group.id).id), method: :delete, data: { confirm: '本当に離脱してもいいですか？' } %></td>
+                <td><%= link_to 'グループから離脱する', grouping_path(id:current_user.groupings.find_by(group_id:group.id).id, current_user_id:current_user.id), method: :delete, data: { confirm: '本当に離脱してもいいですか？' } %></td>
               <% else %>
                 <td><%= link_to 'グループに参加する', groupings_path(group_id:group.id), method: :post, data: { confirm: '本当に参加してもいいですか？'} %></td>
               <% end %>

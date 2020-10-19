@@ -1,4 +1,5 @@
 class GroupingsController < ApplicationController
+  before_action :owner_cant_remove, only: [:destroy]
 
   def create
     groupings = current_user.groupings.new(group_id:params[:group_id])
@@ -17,4 +18,13 @@ class GroupingsController < ApplicationController
       redirect_to groups_path, notice: 'グループから離脱できませんでした'
     end
   end
+
+  private
+
+  def owner_cant_remove
+    if current_user.id == Grouping.find(params[:id]).group.user.id
+      redirect_to groups_path, notice: 'オーナーはグループから離脱できません'
+    end
+  end
+
 end
