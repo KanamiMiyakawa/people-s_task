@@ -10,5 +10,11 @@ class GroupingsController < ApplicationController
   end
 
   def destroy
+    grouping = Grouping.find(params[:id])
+    if grouping.destroy
+      redirect_to groups_path, notice: 'グループから離脱しました'
+    else
+      redirect_to groups_path, notice: 'グループから離脱できませんでした'
+    end
   end
 end
