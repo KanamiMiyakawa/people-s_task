@@ -47,6 +47,10 @@
           <% end %>
 
 
+        <% @task_expired.each do |overed| %>
+          <%= overed.task_name %>
+        <% end %>
+
         <table class="table table-hover show_task_table">
           <thead>
             <tr class="table_ths">
@@ -75,7 +79,7 @@
                   <% end %>
                 </td>
                 <td class="task_priority"><%= task.priority %></td>
-                <td class="task_limit"><%= task.limit %></td>
+                <td class="task_limit"><%= task.task_expired_at %></td>
                 <td class="task_status"><%= task.status %></td>
                 <td class="task_created_at"><%= l task.created_at %></td>
               </tr>

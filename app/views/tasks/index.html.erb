@@ -66,7 +66,7 @@
                 <% end %>
               </td>
               <td class="task_priority"><%= task.priority %></td>
-              <td class="task_limit"><%= task.limit %></td>
+              <td class="task_limit"><%= task.task_expired_at %></td>
               <td class="task_status"><%= task.status %></td>
               <td class="task_created_at"><%= l task.created_at %></td>
               <td><%= link_to t('buttons.task_show'), task, class: "btn btn-default btn_show"%></td>

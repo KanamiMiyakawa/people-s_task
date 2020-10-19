@@ -19,6 +19,7 @@ ja:
         status_2: 着手
         status_3: 完了
         created_at: 作成日時
+        task_expired_at: 期限
       user:
         id: ID
         name: ユーザー名
