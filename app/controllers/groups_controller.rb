@@ -8,6 +8,15 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @members = @group.users
+    @group_tasks = Task.where(user_id:@members.pluck(:id))
+    if params[:sort_limit]
+      @group_tasks = Task.where(user_id:@members.pluck(:id)).limit_sorted.page(params[:page]).per(10)
+    elsif params[:sort_priority]
+      @group_tasks = Task.where(user_id:@members.pluck(:id)).priority_sorted.page(params[:page]).per(10)
+    else
+      @group_tasks = Task.where(user_id:@members.pluck(:id)).created_sorted.page(params[:page]).per(10)
+    end
   end
 
   def new

@@ -3,20 +3,59 @@
     <div class="new_main_wrapper">
       <p id="notice"><%= notice %></p>
 
-      <p>
-        <strong>Group name:</strong>
-        <%= @group.group_name %>
-      </p>
+      <h1><%= @group.group_name %>グループ</h1>
 
-      <p>
-        <strong>Group detail:</strong>
-        <%= @group.group_detail %>
-      </p>
+      <table>
+        <tr>
+          <th>オーナー</th>
+          <td><%= @group.user.name %></td>
+        </tr>
+        <tr>
+          <th>参加者</th>
+          <td><%= @members.pluck(:name).join('　') %></td>
+        </tr>
+      </table>
 
-      <p>
-        <strong>User:</strong>
-        <%= @group.user.id %>
-      </p>
+      <table class="table table-hover group_table_index">
+        <thead>
+          <tr class="table_ths">
+            <th class="first_th task_title_th"><%= t('activerecord.attributes.task.task_name') %></th>
+            <th class="task_content_th"><%= t('activerecord.attributes.task.content') %></th>
+            <th class="task_label_th">ラベル</th>
+            <th class="task_priority_th">
+              <%= link_to "#{t('activerecord.attributes.task.priority')} ▼", group_path(id:@group.id, sort_priority: "true"), id: "sort_priority_button" %>
+            </th>
+            <th class="task_limit_th" id="task_limit_th_id">
+              <%= link_to "#{t('activerecord.attributes.task.limit')} ▼", group_path(id:@group.id, sort_limit: "true"), id: "sort_limit_button" %>
+            </th>
+            <th class="task_status_th"><%= t('activerecord.attributes.task.status') %></th>
+            <th class="task_created_at_th"><%= t('activerecord.attributes.task.created_at') %></th>
+          </tr>
+        </thead>
+
+        <tbody class="task_tbody">
+          <% @group_tasks.each do |task| %>
+            <tr>
+              <td class="task_title"><%= task.task_name %></td>
+              <td><%= task.content %></td>
+              <td>
+                <% task.labels.each do |label| %>
+                  <% if label.official? %>
+                    <span class="official_label label_index"><%= label.label_name %></span>
+                  <% else %>
+                    <span class="user_label label_index"><%= label.label_name %></span>
+                  <% end %>
+                <% end %>
+              </td>
+              <td class="task_priority"><%= task.priority %></td>
+              <td class="task_limit"><%= content_tag :span, task.task_expired_at, class: expired_or_not(task) %></td>
+              <td class="task_status"><%= task.status %></td>
+              <td class="task_created_at"><%= l task.created_at %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate @group_tasks %>
 
       <%= link_to t('buttons.back'), groups_path %>
     </div>
