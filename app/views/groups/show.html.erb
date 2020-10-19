@@ -1,19 +1,24 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid base_bg">
+  <div class="container main">
+    <div class="new_main_wrapper">
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Group name:</strong>
-  <%= @group.group_name %>
-</p>
+      <p>
+        <strong>Group name:</strong>
+        <%= @group.group_name %>
+      </p>
 
-<p>
-  <strong>Group detail:</strong>
-  <%= @group.group_detail %>
-</p>
+      <p>
+        <strong>Group detail:</strong>
+        <%= @group.group_detail %>
+      </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @group.user.id %>
-</p>
+      <p>
+        <strong>User:</strong>
+        <%= @group.user.id %>
+      </p>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+      <%= link_to t('buttons.back'), groups_path %>
+    </div>
+  </div>
+</div>
