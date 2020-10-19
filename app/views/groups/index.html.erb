@@ -21,15 +21,15 @@
             <tr>
               <td><%= group.group_name %></td>
               <td><%= group.group_detail %></td>
-              <td>まだ</td>
+              <td><%= group.users.count %></td>
               <th><%= group.user.name %></th>
 
               <% if group.user.id == current_user.id %>
-                <td><%= link_to 'Show', group %></td>
-                <td><%= link_to 'Edit', edit_group_path(group) %></td>
-                <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= link_to '詳細', group %></td>
+                <td><%= link_to '編集', edit_group_path(group) %></td>
+                <td><%= link_to '削除', group, method: :delete, data: { confirm: '本当に削除してもいいですか？' } %></td>
               <% elsif group.users.include?(current_user) %>
-                <td><%= link_to 'Show', group %></td>
+                <td><%= link_to '詳細', group %></td>
                 <td><%= link_to 'グループから離脱する', grouping_path(id:current_user.groupings.find_by(group_id:group.id).id), method: :delete, data: { confirm: '本当に離脱してもいいですか？' } %></td>
               <% else %>
                 <td><%= link_to 'グループに参加する', groupings_path(group_id:group.id), method: :post, data: { confirm: '本当に参加してもいいですか？'} %></td>

@@ -4,6 +4,8 @@ class Grouping < ApplicationRecord
   belongs_to :user
   belongs_to :group
 
+  private
+
   def owner_cant_remove
     if current_user.id == Group.find(self.group_id).user.id
       throw :abort
