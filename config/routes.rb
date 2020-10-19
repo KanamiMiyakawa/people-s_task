@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :groups
   root 'tasks#index'
 
   resources :tasks
@@ -10,4 +9,6 @@ Rails.application.routes.draw do
     resources :labels, only: [:new, :create, :destroy]
   end
   resources :sessions, only: [:new, :create, :destroy]
+  resources :groups
+  resources :groupings, only: [:create, :destroy]
 end
