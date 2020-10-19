@@ -34,9 +34,13 @@
               <%= link_to user_path(current_user.id) do %>
                 <button type="button" class="btn btn-default navbar-btn">ユーザー詳細</button>
               <% end %>
+              <%= link_to groups_path do %>
+                <button type="button" class="btn btn-default navbar-btn">グループ</button>
+              <% end %>
               <%= link_to session_path(current_user.id), method: :delete do %>
                 <button type="button" class="btn btn-default navbar-btn"　id="logout_button">ログアウト</button>
               <% end %>
+
 
               <% if current_user.admin? %>
                 <%= link_to admin_users_path do %>
