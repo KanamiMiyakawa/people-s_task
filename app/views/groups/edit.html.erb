@@ -1,6 +1,12 @@
-<h1>Editing Group</h1>
+<div class="container-fluid base_bg">
+  <div class="container main">
+    <div class="new_main_wrapper">
+      <h1>グループ更新</h1>
 
-<%= render 'form', group: @group %>
+      <%= render 'form', group: @group %>
 
-<%= link_to 'Show', @group %> |
-<%= link_to 'Back', groups_path %>
+      <%= link_to t('buttons.task_show'), @group %> |
+      <%= link_to t('buttons.back'), groups_path %>
+    </div>
+  </div>
+</div>

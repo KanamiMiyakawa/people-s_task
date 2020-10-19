@@ -30,6 +30,9 @@ ja:
         task_counts: タスク数
       label:
         label_name: ラベル名
+      group:
+        group_name: グループ名
+        group_detail: グループ詳細
   buttons:
     task_new: 新しいタスクを登録
     task_show: 詳細

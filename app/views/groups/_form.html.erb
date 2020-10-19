@@ -11,17 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :group_name %>
-    <%= form.text_field :group_name %>
-  </div>
+  <table class="form_table">
+    <div class="field">
+      <tr>
+        <th><%= form.label :group_name %></th>
+        <td><%= form.text_field :group_name %></td>
+      </tr>
+    </div>
+    <div class="field">
+      <tr>
+        <th><%= form.label :group_detail %></th>
+        <td><%= form.text_field :group_detail %></td>
+      </tr>
+    </div>
 
-  <div class="field">
-    <%= form.label :group_detail %>
-    <%= form.text_field :group_detail %>
-  </div>
+  </table>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "new_submit_btn btn btn-primary new_btn"%>
   </div>
 <% end %>
