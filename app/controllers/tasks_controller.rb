@@ -36,6 +36,7 @@ class TasksController < ApplicationController
     else
       @tasks = current_user.tasks.created_sorted.page(params[:page]).per(10)
     end
+    @task_expired = Task.where(user_id:current_user.id).where("task_expired_at<?",Time.zone.today+2).where.not(status:"完了")
   end
 
   def show

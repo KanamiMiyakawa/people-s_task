@@ -37,7 +37,7 @@
 }
 .show_task_table {
   text-align: left;
-  margin-top: 50px;
+  margin-top: 15px;
 }
 .user_label {
   background-color: #c0d6ff;
@@ -52,4 +52,21 @@
   background-color: #d3ffd3;
   padding: 3px 5px;
   border-radius: 7px;
+}
+.task_expired {
+  border: 1px solid #ff5055;
+  background-color: #ffbdbf;
+  padding: 10px;
+  margin: 30px 30px 0 30px;
+  font-weight: bold;
+}
+.task_expired #task_expired_table {
+  margin: 0 auto;
+}
+.task_expired tr{
+  margin: 0 auto;
+  height:2rem;
+}
+.task_expired td {
+  padding-right: 20px;
 }

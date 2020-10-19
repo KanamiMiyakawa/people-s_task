@@ -79,3 +79,10 @@
 .new_btn {
   background-color: #3c72d1;
 }
+.task_expired_index_td {
+  color: red;
+  font-size: 1.7rem;
+  font-weight: bold;
+  background-color: #ffccd0;
+  padding: 0 2px;
+}

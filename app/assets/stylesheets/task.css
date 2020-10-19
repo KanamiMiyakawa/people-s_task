@@ -49,3 +49,9 @@
 .searched_value {
   color: red;
 }
+#task_expired_table_index {
+  margin: 0 0 0 20px;
+}
+.task_expired.task_expired_index {
+  margin: 20px;
+}

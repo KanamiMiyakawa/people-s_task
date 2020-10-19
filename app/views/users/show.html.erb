@@ -42,13 +42,26 @@
         </ul>
 
 
-          <% if current_user.admin? %>
-            <p class="show_admin_bottun"><%= link_to "ユーザー一覧（管理画面）へ", admin_users_path, class: "btn btn-primary admin_new_btn" %></p>
-          <% end %>
+        <% if current_user.admin? %>
+          <p class="show_admin_bottun"><%= link_to "ユーザー一覧（管理画面）へ", admin_users_path, class: "btn btn-primary admin_new_btn" %></p>
+        <% end %>
+        <br>
+        <hr>
 
-
-        <% @task_expired.each do |overed| %>
-          <%= overed.task_name %>
+        <% if @task_expired.present? %>
+          <div class="task_expired">
+            <p>以下のタスクは2日以内に遂行期限が過ぎるか、すでに過ぎています！</p>
+            <table id="task_expired_table">
+              <% @task_expired.each do |expired| %>
+                <tr>
+                  <td>タスク名:『<%= expired.task_name %>』</td>
+                  <td>優先度:『<%= expired.priority %>』</td>
+                  <td>期限:<%= expired.task_expired_at %></td>
+                  <td><%= expired.status %></td>
+                </tr>
+              <% end %>
+            </table>
+          </div>
         <% end %>
 
         <table class="table table-hover show_task_table">
@@ -79,7 +92,7 @@
                   <% end %>
                 </td>
                 <td class="task_priority"><%= task.priority %></td>
-                <td class="task_limit"><%= task.task_expired_at %></td>
+                <td class="task_limit"><%= content_tag :span, task.task_expired_at, class: expired_or_not(task) %></td>
                 <td class="task_status"><%= task.status %></td>
                 <td class="task_created_at"><%= l task.created_at %></td>
               </tr>

@@ -5,6 +5,22 @@
 
       <h1><%= t('titles.task_title_index') %></h1>
 
+      <% if @task_expired.present? %>
+        <div class="task_expired task_expired_index">
+          <p>以下のタスクは2日以内に遂行期限が過ぎるか、すでに過ぎています！</p>
+          <table id="task_expired_table_index">
+            <% @task_expired.each do |expired| %>
+              <tr>
+                <td>タスク名:『<%= expired.task_name %>』</td>
+                <td>優先度:『<%= expired.priority %>』</td>
+                <td>期限:<%= expired.task_expired_at %></td>
+                <td><%= expired.status %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      <% end %>
+
       <% if @searched_words %>
         <ul class="above_searched_words">次のワードで検索しました
           <li class="searched_words">
@@ -66,7 +82,7 @@
                 <% end %>
               </td>
               <td class="task_priority"><%= task.priority %></td>
-              <td class="task_limit"><%= task.task_expired_at %></td>
+              <td class="task_limit"><%= content_tag :span, task.task_expired_at, class: expired_or_not(task) %></td>
               <td class="task_status"><%= task.status %></td>
               <td class="task_created_at"><%= l task.created_at %></td>
               <td><%= link_to t('buttons.task_show'), task, class: "btn btn-default btn_show"%></td>
