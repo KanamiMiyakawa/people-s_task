@@ -24,6 +24,8 @@
                 <td class="group_table_owner_td">オーナー</td>
               <% elsif group.users.include?(current_user) %>
                 <td class="group_table_member_td">参加中</td>
+              <% else %>
+                <td></td>
               <% end %>
               <td><%= group.group_name %></td>
               <td><%= group.group_detail %></td>

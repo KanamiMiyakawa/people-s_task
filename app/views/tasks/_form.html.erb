@@ -56,6 +56,13 @@
           <% end %>
         </td>
       </tr>
+    </div>
+    <div class="field">
+      <tr>
+        <th>添付ファイル</th>
+        <td><%= form.file_field :task_files, multiple: true %></td>
+      </tr>
+    </div>
   </table>
 
   <div class="actions">

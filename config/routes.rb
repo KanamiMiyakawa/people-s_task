@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   root 'tasks#index'
 
-  resources :tasks
+  resources :tasks do
+    member do
+      patch :file_purge
+    end
+  end
+
   resources :users, only: [:new, :create, :show]
   resources :labels, only: [:new, :create, :destroy]
   namespace :admin do

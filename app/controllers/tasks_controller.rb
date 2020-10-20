@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :file_purge]
   before_action :authenticate_user, only: [:index, :show, :new, :edit]
   before_action :task_different_user, only: [:show, :edit, :destroy]
   before_action :get_available_labels, only: [:index, :new, :create, :edit, :update]
@@ -43,6 +43,14 @@ class TasksController < ApplicationController
     @labels = @task.labels
   end
 
+  def file_purge
+    params[:task][:task_file_ids].each do |task_file_id|
+      file = @task.task_files.find(task_file_id)
+      file.purge
+    end
+    redirect_to @task, notice: 'ファイルを削除しました'
+  end
+
   def new
     @task = Task.new
   end
@@ -79,7 +87,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:task_name, :priority, :task_expired_at, :status, :content, label_ids: [])
+    params.require(:task).permit(:task_name, :priority, :task_expired_at, :status, :content, label_ids: [], task_files: [])
   end
 
   def task_different_user
